@@ -80,6 +80,7 @@ docs/
   REMOVING-BOILERPLATE.md ← How to strip all template content
 
 .github/workflows/
+  ci.yml                 ← Format, lint, test, build on every PR + push to main
   deploy-cloudflare.yml  ← Auto-deploy to Cloudflare Pages on push to main
   deploy-firebase.yml    ← Auto-deploy to Firebase Hosting on push to main
 ```

@@ -33,19 +33,19 @@ The site has two parts:
 
 Edit `src/config/app.ts`. Replace every placeholder value:
 
-| Field             | What to put                                                    |
-| ----------------- | -------------------------------------------------------------- |
-| `name`            | The app's actual name                                          |
-| `tagline`         | One-sentence pitch                                             |
-| `description`     | 2–3 sentence explanation                                       |
-| `targetUsers`     | Who uses this app                                              |
-| `features`        | Replace all 4 with real features (3–6 items)                   |
-| `primaryColor`    | Brand hex color                                                |
-| `accentColor`     | Secondary brand hex color                                      |
-| `backgroundColor` | Page background hex (e.g. `#0f172a` dark, `#ffffff` light)     |
-| `fontFamily`      | CSS font-family string (e.g. `"Inter, system-ui, sans-serif"`) |
-| `deployTarget`    | `"firebase"` or `"cloudflare"`                                 |
-| `status`          | `"concept"` \| `"prototype"` \| `"beta"` \| `"live"`           |
+| Field             | What to put                                                        |
+| ----------------- | ------------------------------------------------------------------ |
+| `name`            | The app's actual name                                              |
+| `tagline`         | One-sentence pitch                                                 |
+| `description`     | 2–3 sentence explanation                                           |
+| `targetUsers`     | Who uses this app                                                  |
+| `features`        | Replace all 4 with real features (3–6 items)                       |
+| `primaryColor`    | Brand hex color                                                    |
+| `accentColor`     | Secondary brand hex color                                          |
+| `backgroundColor` | Page background hex (e.g. `#0f172a` dark, `#ffffff` light)         |
+| `fontFamily`      | CSS font-family string (e.g. `"Inter, system-ui, sans-serif"`)     |
+| `deployTarget`    | `"firebase"` or `"cloudflare"`                                     |
+| `status`          | `"concept"` \| `"mockup"` \| `"prototype"` \| `"beta"` \| `"live"` |
 
 ### Step 2 — Remove sample prototypes
 

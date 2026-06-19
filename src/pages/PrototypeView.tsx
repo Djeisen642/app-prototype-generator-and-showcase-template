@@ -2,12 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { fetchPrototypeIndex } from "../lib/prototypes";
 import type { Prototype } from "../types";
-
-const STATUS_STYLES = {
-  concept: "bg-purple-500/20 text-purple-300 border-purple-500/30",
-  mockup: "bg-blue-500/20 text-blue-300 border-blue-500/30",
-  prototype: "bg-green-500/20 text-green-300 border-green-500/30",
-};
+import { STATUS_STYLES } from "../lib/status";
 
 export default function PrototypeView() {
   const { id } = useParams<{ id: string }>();

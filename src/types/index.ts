@@ -1,3 +1,7 @@
+// Shared lifecycle stage used by both the whole-app status (src/config/app.ts)
+// and each prototype entry. Single source of truth so the two never drift.
+export type Status = "concept" | "mockup" | "prototype" | "beta" | "live";
+
 export interface Feature {
   icon: string;
   title: string;
@@ -19,7 +23,7 @@ export interface Prototype {
   images: string[];
   htmlFile?: string;
   tags: string[];
-  status: "concept" | "mockup" | "prototype";
+  status: Status;
   createdAt: string;
 }
 
