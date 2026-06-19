@@ -16,6 +16,15 @@ describe("appConfig", () => {
     expect(appConfig.accentColor).toMatch(/^#[0-9a-fA-F]{6}$/);
   });
 
+  it("has a valid hex background color", () => {
+    expect(appConfig.backgroundColor).toMatch(/^#[0-9a-fA-F]{6}$/);
+  });
+
+  it("has a non-empty fontFamily", () => {
+    expect(typeof appConfig.fontFamily).toBe("string");
+    expect(appConfig.fontFamily.length).toBeGreaterThan(0);
+  });
+
   it("has at least one feature", () => {
     expect(appConfig.features.length).toBeGreaterThan(0);
     for (const f of appConfig.features) {

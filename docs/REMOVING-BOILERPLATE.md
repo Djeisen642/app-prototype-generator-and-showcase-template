@@ -16,6 +16,8 @@ This document lists every template-specific element to update when setting up th
   - `features` → real features (3–6 items with icon, title, description)
   - `primaryColor` → brand hex (e.g. `#6366f1`)
   - `accentColor` → secondary hex
+  - `backgroundColor` → page background hex (e.g. `#0f172a` for dark, `#ffffff` for light)
+  - `fontFamily` → CSS font-family string (e.g. `"Inter, system-ui, sans-serif"`)
   - `status` → `"concept"` | `"prototype"` | `"beta"` | `"live"`
   - `deployTarget` → `"firebase"` or `"cloudflare"`
   - `githubUrl`, `demoUrl`, `contactEmail` → real links or empty strings
@@ -73,6 +75,8 @@ Features:
   4. Icon: [EMOJI], Title: [TITLE], Description: [WHAT IT DOES]
 Primary Color (hex): [#XXXXXX]
 Accent Color (hex): [#XXXXXX]
+Background Color (hex): [#XXXXXX]
+Font Family: [e.g. "Inter, system-ui, sans-serif"]
 Deploy Target: [firebase or cloudflare]
 Status: [concept / prototype / beta / live]
 GitHub URL: [URL or empty]
