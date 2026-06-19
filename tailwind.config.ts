@@ -1,17 +1,3 @@
-import type { Config } from "tailwindcss";
-
-export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-  theme: {
-    extend: {
-      colors: {
-        primary: "var(--color-primary)",
-        accent: "var(--color-accent)",
-      },
-      fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-      },
-    },
-  },
-  plugins: [],
-} satisfies Config;
+// Tailwind v4 uses CSS-first configuration — no JS config file needed.
+// Custom colors and theme tokens are defined in src/index.css via @theme {}.
+// See: https://tailwindcss.com/docs/v4-upgrade

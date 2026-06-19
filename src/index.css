@@ -1,10 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
+@theme {
   --color-primary: #6366f1;
   --color-accent: #ec4899;
+  --font-sans: "Inter", system-ui, sans-serif;
 }
 
 * {
@@ -13,7 +12,7 @@
 
 body {
   margin: 0;
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: var(--font-sans);
   background-color: #0f172a;
   color: #f1f5f9;
   -webkit-font-smoothing: antialiased;
