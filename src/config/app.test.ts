@@ -35,7 +35,7 @@ describe("appConfig", () => {
   });
 
   it("has a valid status", () => {
-    expect(["concept", "prototype", "beta", "live"]).toContain(appConfig.status);
+    expect(["concept", "mockup", "prototype", "beta", "live"]).toContain(appConfig.status);
   });
 
   it("has a valid deployTarget", () => {

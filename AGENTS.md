@@ -33,19 +33,19 @@ The site has two parts:
 
 Edit `src/config/app.ts`. Replace every placeholder value:
 
-| Field             | What to put                                                    |
-| ----------------- | -------------------------------------------------------------- |
-| `name`            | The app's actual name                                          |
-| `tagline`         | One-sentence pitch                                             |
-| `description`     | 2–3 sentence explanation                                       |
-| `targetUsers`     | Who uses this app                                              |
-| `features`        | Replace all 4 with real features (3–6 items)                   |
-| `primaryColor`    | Brand hex color                                                |
-| `accentColor`     | Secondary brand hex color                                      |
-| `backgroundColor` | Page background hex (e.g. `#0f172a` dark, `#ffffff` light)     |
-| `fontFamily`      | CSS font-family string (e.g. `"Inter, system-ui, sans-serif"`) |
-| `deployTarget`    | `"firebase"` or `"cloudflare"`                                 |
-| `status`          | `"concept"` \| `"prototype"` \| `"beta"` \| `"live"`           |
+| Field             | What to put                                                        |
+| ----------------- | ------------------------------------------------------------------ |
+| `name`            | The app's actual name                                              |
+| `tagline`         | One-sentence pitch                                                 |
+| `description`     | 2–3 sentence explanation                                           |
+| `targetUsers`     | Who uses this app                                                  |
+| `features`        | Replace all 4 with real features (3–6 items)                       |
+| `primaryColor`    | Brand hex color                                                    |
+| `accentColor`     | Secondary brand hex color                                          |
+| `backgroundColor` | Page background hex (e.g. `#0f172a` dark, `#ffffff` light)         |
+| `fontFamily`      | CSS font-family string (e.g. `"Inter, system-ui, sans-serif"`)     |
+| `deployTarget`    | `"firebase"` or `"cloudflare"`                                     |
+| `status`          | `"concept"` \| `"mockup"` \| `"prototype"` \| `"beta"` \| `"live"` |
 
 ### Step 2 — Remove sample prototypes
 
@@ -229,6 +229,7 @@ npm run deploy:firebase   # Build + deploy to Firebase Hosting
 - Before creating a new file, check whether an existing one can be extended instead
 - Keep prototype HTML mockups self-contained — styles in `<style>`, no external `<script src>`
 - Use `var(--color-primary)` / `var(--color-accent)` for brand colors so they update everywhere
+- Keep the pull request description in sync with the diff — when a PR's functionality diverges from its description, update the description in the same push
 
 **Do not:**
 

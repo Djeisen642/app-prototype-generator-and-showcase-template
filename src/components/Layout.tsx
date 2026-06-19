@@ -1,12 +1,6 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { appConfig } from "../config/app";
-
-const STATUS_STYLES: Record<typeof appConfig.status, string> = {
-  concept: "bg-purple-500/20 text-purple-300 border-purple-500/30",
-  prototype: "bg-blue-500/20 text-blue-300 border-blue-500/30",
-  beta: "bg-yellow-500/20 text-yellow-300 border-yellow-500/30",
-  live: "bg-green-500/20 text-green-300 border-green-500/30",
-};
+import { statusStyle } from "../lib/status";
 
 export default function Layout() {
   const location = useLocation();
@@ -23,7 +17,7 @@ export default function Layout() {
           <Link to="/" className="flex items-center gap-2.5">
             <span className="font-bold text-white">{appConfig.name}</span>
             <span
-              className={`text-xs font-medium px-2 py-0.5 rounded-full border ${STATUS_STYLES[appConfig.status]}`}
+              className={`text-xs font-medium px-2 py-0.5 rounded-full border ${statusStyle(appConfig.status)}`}
             >
               {appConfig.status}
             </span>

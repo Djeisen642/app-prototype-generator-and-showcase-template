@@ -1,11 +1,6 @@
 import { Link } from "react-router-dom";
 import type { Prototype } from "../types";
-
-const STATUS_STYLES = {
-  concept: "bg-purple-500/20 text-purple-300 border-purple-500/30",
-  mockup: "bg-blue-500/20 text-blue-300 border-blue-500/30",
-  prototype: "bg-green-500/20 text-green-300 border-green-500/30",
-};
+import { statusStyle } from "../lib/status";
 
 export default function PrototypeCard({ prototype }: { prototype: Prototype }) {
   const firstImage = prototype.images[0];
@@ -38,7 +33,7 @@ export default function PrototypeCard({ prototype }: { prototype: Prototype }) {
             {prototype.title}
           </h3>
           <span
-            className={`text-xs font-medium px-2 py-0.5 rounded-full border shrink-0 ${STATUS_STYLES[prototype.status]}`}
+            className={`text-xs font-medium px-2 py-0.5 rounded-full border shrink-0 ${statusStyle(prototype.status)}`}
           >
             {prototype.status}
           </span>

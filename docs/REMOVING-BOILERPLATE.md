@@ -18,7 +18,7 @@ This document lists every template-specific element to update when setting up th
   - `accentColor` → secondary hex
   - `backgroundColor` → page background hex (e.g. `#0f172a` for dark, `#ffffff` for light)
   - `fontFamily` → CSS font-family string (e.g. `"Inter, system-ui, sans-serif"`)
-  - `status` → `"concept"` | `"prototype"` | `"beta"` | `"live"`
+  - `status` → `"concept"` | `"mockup"` | `"prototype"` | `"beta"` | `"live"`
   - `deployTarget` → `"firebase"` or `"cloudflare"`
   - `githubUrl`, `demoUrl`, `contactEmail` → real links or empty strings
 
@@ -78,7 +78,7 @@ Accent Color (hex): [#XXXXXX]
 Background Color (hex): [#XXXXXX]
 Font Family: [e.g. "Inter, system-ui, sans-serif"]
 Deploy Target: [firebase or cloudflare]
-Status: [concept / prototype / beta / live]
+Status: [concept / mockup / prototype / beta / live]
 GitHub URL: [URL or empty]
 Contact Email: [EMAIL or empty]
 

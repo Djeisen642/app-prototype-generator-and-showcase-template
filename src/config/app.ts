@@ -7,6 +7,8 @@
 // AI Agents: see AGENTS.md for a step-by-step checklist.
 // ============================================================
 
+import type { Status } from "../types";
+
 export const appConfig = {
   // --- Identity ---
   // Replace these with your real app details.
@@ -56,7 +58,8 @@ export const appConfig = {
   contactEmail: "",
 
   // --- Development Status ---
-  status: "concept" as "concept" | "prototype" | "beta" | "live",
+  // One of: "concept" | "mockup" | "prototype" | "beta" | "live"
+  status: "concept" as Status,
 
   // --- Deployment Target ---
   // Set this to match where you plan to deploy.

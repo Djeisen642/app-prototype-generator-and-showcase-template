@@ -40,7 +40,7 @@ interface PrototypeEntry {
   images: string[];
   htmlFile?: string;
   tags: string[];
-  status: "concept" | "mockup" | "prototype";
+  status: "concept" | "mockup" | "prototype" | "beta" | "live";
   createdAt: string;
 }
 
@@ -139,8 +139,8 @@ async function main() {
         .filter(Boolean)
     : [];
 
-  const statusOptions = ["concept", "mockup", "prototype"] as const;
-  const rawStatus = await line("Status [concept]: ");
+  const statusOptions = ["concept", "mockup", "prototype", "beta", "live"] as const;
+  const rawStatus = await line("Status (concept/mockup/prototype/beta/live) [concept]: ");
   const status = statusOptions.includes(rawStatus as (typeof statusOptions)[number])
     ? (rawStatus as (typeof statusOptions)[number])
     : "concept";
