@@ -93,6 +93,20 @@ Replace `README.md` with app-specific documentation.
 
 ---
 
+## Keeping Files in Sync
+
+`public/llms.txt` and `public/app-index.json` are derived from `src/config/app.ts`. They are not auto-generated — **whenever `src/config/app.ts` is modified, update these two files to match.**
+
+| Changed in `app.ts` | Update in `llms.txt` | Update in `app-index.json` |
+|---------------------|---------------------|---------------------------|
+| `name` | First heading and description | `app.name` |
+| `tagline` / `description` | Body description | `app.tagline`, `app.description` |
+| `targetUsers` | Body if mentioned | `app.targetUsers` |
+| `status` | — | `app.status` |
+| `deployTarget` | — | `deployment.active` |
+
+---
+
 ## Architecture
 
 ```
