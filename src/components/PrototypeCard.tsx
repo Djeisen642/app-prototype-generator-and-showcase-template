@@ -1,57 +1,51 @@
 import { Link } from "react-router-dom";
 import type { Prototype } from "../types";
 
-const TYPE_LABELS: Record<Prototype["type"], string> = {
-  "landing-page": "Landing Page",
-  dashboard: "Dashboard",
-  "mobile-screen": "Mobile Screen",
-  onboarding: "Onboarding",
-  settings: "Settings",
-  other: "Other",
-};
-
-const TYPE_ICONS: Record<Prototype["type"], string> = {
-  "landing-page": "🚀",
-  dashboard: "📊",
-  "mobile-screen": "📱",
-  onboarding: "👋",
-  settings: "⚙️",
-  other: "🖼️",
-};
-
-const STYLE_GRADIENTS: Record<Prototype["style"], string> = {
-  minimal: "from-slate-700 to-slate-600",
-  colorful: "from-purple-600 to-pink-600",
-  dark: "from-slate-900 to-slate-700",
-  corporate: "from-blue-700 to-blue-600",
-  playful: "from-orange-500 to-yellow-400",
+const STATUS_STYLES = {
+  concept: "bg-purple-500/20 text-purple-300 border-purple-500/30",
+  mockup: "bg-blue-500/20 text-blue-300 border-blue-500/30",
+  prototype: "bg-green-500/20 text-green-300 border-green-500/30",
 };
 
 export default function PrototypeCard({ prototype }: { prototype: Prototype }) {
+  const firstImage = prototype.images[0];
+
   return (
     <Link
       to={`/showcase/${prototype.id}`}
       className="group block bg-slate-800 rounded-xl overflow-hidden border border-slate-700 hover:border-slate-500 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/30"
     >
-      <div
-        className={`h-36 bg-gradient-to-br ${STYLE_GRADIENTS[prototype.style]} flex items-center justify-center`}
-      >
-        <div className="text-center">
-          <div className="text-4xl mb-1.5">{TYPE_ICONS[prototype.type]}</div>
-          <span className="text-white/60 text-xs uppercase tracking-wider font-medium">
-            {TYPE_LABELS[prototype.type]}
+      <div className="h-48 overflow-hidden bg-slate-700">
+        {firstImage ? (
+          <img
+            src={firstImage}
+            alt={prototype.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+        ) : (
+          <div className="w-full h-full flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-slate-700 to-slate-800">
+            <span className="text-4xl opacity-30">🖼️</span>
+            <span className="text-xs text-slate-500 font-medium uppercase tracking-wider">
+              No mockups yet
+            </span>
+          </div>
+        )}
+      </div>
+
+      <div className="p-5">
+        <div className="flex items-start justify-between gap-2 mb-1">
+          <h3 className="font-semibold text-white group-hover:text-primary transition-colors leading-snug">
+            {prototype.title}
+          </h3>
+          <span
+            className={`text-xs font-medium px-2 py-0.5 rounded-full border shrink-0 ${STATUS_STYLES[prototype.status]}`}
+          >
+            {prototype.status}
           </span>
         </div>
-      </div>
-      <div className="p-4">
-        <h3 className="font-semibold text-white group-hover:text-primary transition-colors line-clamp-1">
-          {prototype.title}
-        </h3>
-        <p className="text-sm text-slate-400 mt-1 line-clamp-2 leading-relaxed">
-          {prototype.description}
-        </p>
+        <p className="text-sm text-slate-400 leading-relaxed line-clamp-2">{prototype.tagline}</p>
         <div className="flex items-center gap-1.5 mt-3 flex-wrap">
-          {prototype.tags?.slice(0, 3).map((tag) => (
+          {prototype.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
               className="text-xs px-2 py-0.5 bg-slate-700/80 rounded-full text-slate-400"
@@ -59,9 +53,6 @@ export default function PrototypeCard({ prototype }: { prototype: Prototype }) {
               {tag}
             </span>
           ))}
-          <span className="ml-auto text-xs text-slate-600">
-            {new Date(prototype.createdAt).toLocaleDateString()}
-          </span>
         </div>
       </div>
     </Link>

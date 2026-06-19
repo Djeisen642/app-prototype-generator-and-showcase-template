@@ -11,26 +11,31 @@ Cloudflare Pages offers a generous free tier, a fast global CDN, and the simples
 ### First-time Setup
 
 **1. Install Wrangler CLI:**
+
 ```bash
 npm install -g wrangler
 ```
 
 **2. Log in:**
+
 ```bash
 wrangler login
 ```
 
 **3. Create a Pages project:**
+
 ```bash
 wrangler pages project create your-app-name
 ```
 
 **4. Update `wrangler.toml`:**
+
 ```toml
 name = "your-app-name"   # ← match the name you just created
 ```
 
 **5. Set `deployTarget` in `src/config/app.ts`:**
+
 ```typescript
 deployTarget: "cloudflare",
 ```
@@ -71,19 +76,23 @@ Firebase Hosting integrates well with the Google ecosystem.
 ### First-time Setup
 
 **1. Install Firebase CLI:**
+
 ```bash
 npm install -g firebase-tools
 ```
 
 **2. Log in:**
+
 ```bash
 firebase login
 ```
 
 **3. Initialize hosting:**
+
 ```bash
 firebase init hosting
 ```
+
 - Select or create a Firebase project
 - Public directory: `dist`
 - Configure as single-page app: `Yes`
@@ -92,6 +101,7 @@ firebase init hosting
 This creates `.firebaserc` with your project ID. Use `.firebaserc.example` as a reference.
 
 **4. Set `deployTarget` in `src/config/app.ts`:**
+
 ```typescript
 deployTarget: "firebase",
 ```
@@ -122,14 +132,14 @@ To enable it:
 
 ## Comparing the Two
 
-| | Cloudflare Pages | Firebase Hosting |
-|--|--|--|
-| Free tier | 500 builds/mo, unlimited bandwidth | 10 GB/mo bandwidth |
-| Build speed | Fast | Moderate |
-| CDN | 300+ global PoPs | Google CDN |
-| Custom domains | Free + auto SSL | Free + auto SSL |
-| Analytics | Cloudflare Web Analytics (free) | Requires Firebase Analytics setup |
-| Best for | Speed + simplicity | Teams already using Google/Firebase |
+|                | Cloudflare Pages                   | Firebase Hosting                    |
+| -------------- | ---------------------------------- | ----------------------------------- |
+| Free tier      | 500 builds/mo, unlimited bandwidth | 10 GB/mo bandwidth                  |
+| Build speed    | Fast                               | Moderate                            |
+| CDN            | 300+ global PoPs                   | Google CDN                          |
+| Custom domains | Free + auto SSL                    | Free + auto SSL                     |
+| Analytics      | Cloudflare Web Analytics (free)    | Requires Firebase Analytics setup   |
+| Best for       | Speed + simplicity                 | Teams already using Google/Firebase |
 
 Both deploy the same `dist/` folder. You can switch between them any time by updating `deployTarget` and following the other provider's setup.
 

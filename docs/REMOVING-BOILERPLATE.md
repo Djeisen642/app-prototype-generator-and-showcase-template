@@ -16,19 +16,22 @@ This document lists every template-specific element to update when setting up th
   - `features` → real features (3–6 items with icon, title, description)
   - `primaryColor` → brand hex (e.g. `#6366f1`)
   - `accentColor` → secondary hex
+  - `backgroundColor` → page background hex (e.g. `#0f172a` for dark, `#ffffff` for light)
+  - `fontFamily` → CSS font-family string (e.g. `"Inter, system-ui, sans-serif"`)
   - `status` → `"concept"` | `"prototype"` | `"beta"` | `"live"`
   - `deployTarget` → `"firebase"` or `"cloudflare"`
   - `githubUrl`, `demoUrl`, `contactEmail` → real links or empty strings
 
-- [ ] **`public/prototypes/sample-landing-page.html`** — Delete this file
-- [ ] **`public/prototypes/sample-dashboard.html`** — Delete this file
 - [ ] **`public/prototypes/index.json`** — Clear the prototypes array:
+
   ```json
   {
     "prototypes": [],
     "lastUpdated": "2025-01-01T00:00:00Z"
   }
   ```
+
+- [ ] **`public/prototypes/taskflow-*/`** — Delete the sample prototype folder
 
 - [ ] **`public/llms.txt`** — Update the first two lines with the real app name and description
 
@@ -72,6 +75,8 @@ Features:
   4. Icon: [EMOJI], Title: [TITLE], Description: [WHAT IT DOES]
 Primary Color (hex): [#XXXXXX]
 Accent Color (hex): [#XXXXXX]
+Background Color (hex): [#XXXXXX]
+Font Family: [e.g. "Inter, system-ui, sans-serif"]
 Deploy Target: [firebase or cloudflare]
 Status: [concept / prototype / beta / live]
 GitHub URL: [URL or empty]
@@ -79,12 +84,11 @@ Contact Email: [EMAIL or empty]
 
 Please follow the REMOVING-BOILERPLATE.md checklist exactly:
 1. Update src/config/app.ts with all values above
-2. Delete public/prototypes/sample-landing-page.html
-3. Delete public/prototypes/sample-dashboard.html
-4. Clear public/prototypes/index.json (empty prototypes array)
-5. Update public/llms.txt with the real app name and description
-6. Update public/app-index.json to match the config
-7. Do NOT modify AGENTS.md, CLAUDE.md, LICENSE, or docs/ files
+2. Delete public/prototypes/taskflow-*/ (sample prototype folder)
+3. Clear public/prototypes/index.json (empty prototypes array)
+4. Update public/llms.txt with the real app name and description
+5. Update public/app-index.json to match the config
+6. Do NOT modify AGENTS.md, CLAUDE.md, LICENSE, or docs/ files
 ```
 
 ---
@@ -93,10 +97,9 @@ Please follow the REMOVING-BOILERPLATE.md checklist exactly:
 
 These files should be kept as-is (they're infrastructure, not content):
 
-- `src/lib/llm.ts` — unless adding a new LLM provider
 - `src/lib/prototypes.ts`
 - `src/components/` — unless changing the UI design
 - `src/pages/` — unless changing the showcase UX
 - `scripts/generate.ts`
-- `firebase.json`, `postcss.config.js`, `vite.config.ts`, `tsconfig*.json`
+- `firebase.json`, `vite.config.ts`, `tsconfig.json`
 - `docs/DEPLOYMENT.md`, `docs/AI-SETUP.md`, `docs/ONBOARDING.md` — these are useful for the user

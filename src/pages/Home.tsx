@@ -26,9 +26,7 @@ export default function Home() {
             <p className="text-xl text-slate-300 mb-4 font-medium leading-snug">
               {appConfig.tagline}
             </p>
-            <p className="text-slate-400 leading-relaxed mb-8 max-w-xl">
-              {appConfig.description}
-            </p>
+            <p className="text-slate-400 leading-relaxed mb-8 max-w-xl">{appConfig.description}</p>
             <div className="flex flex-wrap gap-3">
               <Link
                 to="/showcase"
@@ -36,12 +34,6 @@ export default function Home() {
                 style={{ backgroundColor: "var(--color-primary)" }}
               >
                 View Prototypes
-              </Link>
-              <Link
-                to="/generator"
-                className="px-6 py-3 rounded-lg font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 transition-colors border border-slate-700"
-              >
-                Generate New
               </Link>
               {appConfig.demoUrl && (
                 <a
@@ -93,7 +85,7 @@ export default function Home() {
         >
           <h2 className="text-3xl font-bold text-white mb-3 tracking-tight">See It in Action</h2>
           <p className="text-slate-300 mb-8 max-w-md mx-auto">
-            Explore the prototype screens to see how {appConfig.name} will look and feel.
+            Explore the prototype concepts to see how {appConfig.name} will look and feel.
           </p>
           <Link
             to="/showcase"

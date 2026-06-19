@@ -1,16 +1,17 @@
 #!/usr/bin/env tsx
 /**
- * CLI Prototype Generator
+ * Prototype Scaffolder
  * Run: npm run generate
  *
- * Prompts for screen details, calls your configured LLM,
- * saves the HTML to public/prototypes/, and updates index.json.
+ * Collects metadata about a new app concept, scaffolds the directory
+ * and index.json entry, then prints a brief for your AI agent.
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { createInterface } from "readline/promises";
 import { stdin as input, stdout as output } from "process";
+import { appConfig } from "../src/config/app.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -19,34 +20,28 @@ const PROTOTYPES_DIR = join(ROOT, "public", "prototypes");
 const INDEX_FILE = join(PROTOTYPES_DIR, "index.json");
 
 // ---------------------------------------------------------------------------
-// Env loader (reads .env.local without requiring dotenv as a dep)
-// ---------------------------------------------------------------------------
-function loadEnv() {
-  const envPath = join(ROOT, ".env.local");
-  if (!existsSync(envPath)) return;
-  for (const line of readFileSync(envPath, "utf-8").split("\n")) {
-    const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith("#")) continue;
-    const eq = trimmed.indexOf("=");
-    if (eq === -1) continue;
-    const key = trimmed.slice(0, eq).trim();
-    const val = trimmed.slice(eq + 1).trim().replace(/^["']|["']$/g, "");
-    if (key && !process.env[key]) process.env[key] = val;
-  }
-}
-
-// ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
+interface Feature {
+  icon: string;
+  title: string;
+  description: string;
+}
+
 interface PrototypeEntry {
   id: string;
   title: string;
+  tagline: string;
   description: string;
-  type: string;
-  style: string;
-  createdAt: string;
-  htmlFile: string;
+  problem: string;
+  targetUsers: string;
+  features: Feature[];
+  competitive: { competitors: string[]; advantages: string[] };
+  images: string[];
+  htmlFile?: string;
   tags: string[];
+  status: "concept" | "mockup" | "prototype";
+  createdAt: string;
 }
 
 interface PrototypeIndex {
@@ -68,162 +63,141 @@ function writeIndex(index: PrototypeIndex): void {
 }
 
 function slugify(text: string): string {
-  return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 50);
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 40);
 }
 
-function stripCodeFences(text: string): string {
-  return text.replace(/^```(?:html)?\s*/i, "").replace(/\s*```\s*$/, "").trim();
-}
-
-// ---------------------------------------------------------------------------
-// LLM Providers
-// ---------------------------------------------------------------------------
-async function callLLM(userPrompt: string, systemPrompt: string): Promise<string> {
-  const provider = (process.env.VITE_LLM_PROVIDER ?? "anthropic").toLowerCase();
-  const apiKey = process.env.VITE_LLM_API_KEY;
-  const model = process.env.VITE_LLM_MODEL;
-  const baseUrl = process.env.VITE_LLM_BASE_URL;
-
-  if (!apiKey) {
-    throw new Error(
-      "\nNo API key found.\nCreate .env.local and set VITE_LLM_API_KEY.\nSee .env.example for options.\n"
-    );
-  }
-
-  console.log(`\nGenerating with ${provider}${model ? ` (${model})` : ""}…\n`);
-
-  if (provider === "anthropic") {
-    const { default: Anthropic } = await import("@anthropic-ai/sdk");
-    const client = new Anthropic({ apiKey });
-    const response = await client.messages.create({
-      model: model ?? "claude-sonnet-4-6",
-      max_tokens: 8192,
-      system: systemPrompt,
-      messages: [{ role: "user", content: userPrompt }],
-    });
-    const block = response.content[0];
-    if (block.type !== "text") throw new Error("Unexpected Anthropic response type");
-    return block.text;
-  }
-
-  if (provider === "openai" || provider === "custom") {
-    const { default: OpenAI } = await import("openai");
-    const client = new OpenAI({ apiKey, baseURL: baseUrl ?? undefined });
-    const response = await client.chat.completions.create({
-      model: model ?? "gpt-4o",
-      max_tokens: 8192,
-      messages: [
-        { role: "system", content: systemPrompt },
-        { role: "user", content: userPrompt },
-      ],
-    });
-    return response.choices[0]?.message.content ?? "";
-  }
-
-  if (provider === "google") {
-    const m = model ?? "gemini-2.0-flash-lite";
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${apiKey}`;
-    const res = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        contents: [{ role: "user", parts: [{ text: `${systemPrompt}\n\n${userPrompt}` }] }],
-      }),
-    });
-    if (!res.ok) throw new Error(`Google API error ${res.status}: ${await res.text()}`);
-    const data = (await res.json()) as {
-      candidates: Array<{ content: { parts: Array<{ text: string }> } }>;
-    };
-    return data.candidates[0].content.parts[0].text;
-  }
-
-  throw new Error(
-    `Unknown provider: "${provider}". Set VITE_LLM_PROVIDER to: anthropic, openai, google, or custom.`
-  );
+async function promptLine(
+  rl: Awaited<ReturnType<typeof createInterface>>,
+  question: string
+): Promise<string> {
+  return (await rl.question(question)).trim();
 }
 
 // ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
 async function main() {
-  loadEnv();
-
   const rl = createInterface({ input, output });
+  const line = (q: string) => promptLine(rl, q);
 
   console.log("\nApp Prototype Generator");
-  console.log("─".repeat(40));
-  console.log("Generates AI-powered HTML prototypes.\n");
+  console.log("─".repeat(44));
+  console.log(`Showcase: ${appConfig.name}\n`);
 
-  const title = (await rl.question("Prototype title (e.g. 'Main Dashboard'): ")).trim();
-  if (!title) { console.log("Title is required."); rl.close(); process.exit(1); }
-
-  const description = (await rl.question("Describe this screen: ")).trim();
-
-  const screenTypes = ["landing-page", "dashboard", "mobile-screen", "onboarding", "settings", "other"];
-  console.log(`\nOptions: ${screenTypes.join(", ")}`);
-  const rawType = (await rl.question("Screen type [dashboard]: ")).trim();
-  const screenType = screenTypes.includes(rawType) ? rawType : "dashboard";
-
-  const styles = ["minimal", "dark", "colorful", "corporate", "playful"];
-  console.log(`\nOptions: ${styles.join(", ")}`);
-  const rawStyle = (await rl.question("Visual style [minimal]: ")).trim();
-  const style = styles.includes(rawStyle) ? rawStyle : "minimal";
-
-  const tagsRaw = (await rl.question("Tags, comma-separated (optional): ")).trim();
-  const tags = tagsRaw ? tagsRaw.split(",").map((t) => t.trim()).filter(Boolean) : [];
-
-  rl.close();
-
-  const systemPrompt = `You are an expert UI/UX designer and frontend developer.
-Generate complete, self-contained HTML prototypes that look like real, polished applications.
-
-Requirements:
-- Complete HTML document with all styles in a <style> tag
-- No external JavaScript dependencies; Google Fonts <link> is allowed
-- Realistic, specific placeholder content — never "Lorem ipsum"
-- Modern, professional design matching the requested style
-- Responsive layout
-- Output ONLY the HTML document — no explanation, no markdown fences`;
-
-  const userPrompt = `Generate a ${screenType} prototype with ${style} visual style.
-
-Title: ${title}
-Details: ${description || "A standard " + screenType + " screen"}`;
-
-  let html: string;
-  try {
-    html = await callLLM(userPrompt, systemPrompt);
-  } catch (err) {
-    console.error(err instanceof Error ? err.message : String(err));
+  // Core concept
+  const title = await line("App name / title: ");
+  if (!title) {
+    console.log("Title is required.");
+    rl.close();
     process.exit(1);
   }
 
-  const cleanHtml = stripCodeFences(html);
+  const tagline = await line("One-line pitch: ");
+  const description = await line("2–3 sentence description: ");
+  const problem = await line("What problem does this solve? ");
+  const targetUsers = await line("Who is this for? ");
+
+  // Competitors
+  const competitorsRaw = await line("Competing apps (comma-separated, optional): ");
+  const competitors = competitorsRaw
+    ? competitorsRaw
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean)
+    : [];
+
+  // Advantages
+  const advantagesRaw = await line("Key advantages over competitors (comma-separated, optional): ");
+  const advantages = advantagesRaw
+    ? advantagesRaw
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean)
+    : [];
+
+  // Features (up to 4)
+  const features: Feature[] = [];
+  console.log("\nAdd up to 4 key features (press Enter to skip):");
+  const FEATURE_ICONS = ["⚡", "🎯", "🔒", "📊"];
+  for (let i = 0; i < 4; i++) {
+    const ftitle = await line(`  Feature ${i + 1} title (or Enter to stop): `);
+    if (!ftitle) break;
+    const fdesc = await line(`  Feature ${i + 1} description: `);
+    features.push({ icon: FEATURE_ICONS[i], title: ftitle, description: fdesc });
+  }
+
+  // Tags and status
+  const tagsRaw = await line('\nTags, comma-separated (e.g. "saas, productivity"): ');
+  const tags = tagsRaw
+    ? tagsRaw
+        .split(",")
+        .map((t) => t.trim())
+        .filter(Boolean)
+    : [];
+
+  const statusOptions = ["concept", "mockup", "prototype"] as const;
+  const rawStatus = await line("Status [concept]: ");
+  const status = statusOptions.includes(rawStatus as (typeof statusOptions)[number])
+    ? (rawStatus as (typeof statusOptions)[number])
+    : "concept";
+
+  rl.close();
+
+  // Scaffold
   const id = `${slugify(title)}-${Date.now()}`;
-  const filename = `${id}.html`;
-  const outputPath = join(PROTOTYPES_DIR, filename);
+  const dir = join(PROTOTYPES_DIR, id);
+  mkdirSync(dir, { recursive: true });
 
-  mkdirSync(PROTOTYPES_DIR, { recursive: true });
-  writeFileSync(outputPath, cleanHtml + "\n");
-
-  const index = readIndex();
-  index.prototypes.push({
+  const entry: PrototypeEntry = {
     id,
     title,
-    description: description || "",
-    type: screenType,
-    style,
-    createdAt: new Date().toISOString(),
-    htmlFile: `/prototypes/${filename}`,
+    tagline: tagline || title,
+    description: description || title,
+    problem: problem || "",
+    targetUsers: targetUsers || "",
+    features,
+    competitive: { competitors, advantages },
+    images: [],
     tags,
-  });
+    status,
+    createdAt: new Date().toISOString(),
+  };
+
+  const index = readIndex();
+  index.prototypes.push(entry);
   index.lastUpdated = new Date().toISOString();
   writeIndex(index);
 
-  console.log(`\nSaved:   public/prototypes/${filename}`);
-  console.log(`Updated: public/prototypes/index.json`);
-  console.log(`\nView at: http://localhost:5173/showcase/${id}`);
-  console.log("         (run 'npm run dev' if not already running)\n");
+  // Output agent brief
+  const divider = "━".repeat(56);
+  console.log(`\nScaffolded: public/prototypes/${id}/`);
+  console.log(`Updated:    public/prototypes/index.json\n`);
+  console.log(divider);
+  console.log(`AGENT BRIEF — ${title}`);
+  console.log(divider);
+  console.log(`
+Concept:  ${tagline || description}
+For:      ${targetUsers}
+Problem:  ${problem}
+${competitors.length ? `Beats:    ${competitors.join(", ")}` : ""}
+`);
+  console.log(`Generate mockup images and save them to:`);
+  console.log(`  public/prototypes/${id}/\n`);
+  console.log(`Suggested screens:`);
+  console.log(`  home.png        — Landing page or main entry point`);
+  console.log(`  dashboard.png   — Core user workflow`);
+  console.log(`  feature.png     — Standout feature close-up\n`);
+  console.log(`After generating each image, add its path to "images" in index.json:`);
+  console.log(`  "/prototypes/${id}/home.png"\n`);
+  console.log(`Optional: create an HTML mockup at:`);
+  console.log(`  public/prototypes/${id}/mockup.html`);
+  console.log(`  Then set "htmlFile": "/prototypes/${id}/mockup.html" in index.json.\n`);
+  console.log(`View at: http://localhost:5173/showcase/${id}`);
+  console.log(divider + "\n");
 }
 
 main().catch((err) => {

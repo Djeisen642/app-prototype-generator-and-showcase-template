@@ -8,12 +8,8 @@
 
 **Removing boilerplate:** Use `docs/REMOVING-BOILERPLATE.md` as your task description — it is formatted as a direct agent prompt.
 
-**Generator prompt changes:** Edit both `src/lib/llm.ts` (web UI) and `scripts/generate.ts` (CLI) — they build prompts independently.
+**Adding a prototype:** Run `npm run generate`, answer the prompts, then follow the printed agent brief. The brief tells you exactly what images to generate and where to save them.
 
-**Model recommendations:**
+**Generating mockup images:** Use whatever image generation tools are available in your current environment (MCP image tools, DALL-E via the API, etc.). Save the output to `public/prototypes/{id}/`.
 
-| Provider | Quality | Fast/cheap |
-|----------|---------|------------|
-| Anthropic | `claude-sonnet-4-6` | `claude-haiku-4-5-20251001` |
-| OpenAI | `gpt-4o` | `gpt-4o-mini` |
-| Google | `gemini-1.5-flash` | `gemini-2.0-flash-lite` |
+**Creating HTML mockups:** Write a self-contained HTML file with all styles inline. No external JS dependencies. Google Fonts `<link>` is fine. Save to `public/prototypes/{id}/mockup.html`.

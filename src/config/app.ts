@@ -43,9 +43,12 @@ export const appConfig = {
   ],
 
   // --- Branding ---
-  // Hex color codes used throughout the showcase.
+  // All design tokens are read by main.tsx and applied as CSS variables.
+  // Change any of these and the entire UI updates — no other files to touch.
   primaryColor: "#6366f1",
   accentColor: "#ec4899",
+  backgroundColor: "#0f172a",
+  fontFamily: "Inter, system-ui, sans-serif",
 
   // --- Links (leave empty to hide) ---
   githubUrl: "",

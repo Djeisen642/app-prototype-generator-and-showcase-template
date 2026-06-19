@@ -11,12 +11,23 @@
     "targetUsers": "Update this after editing src/config/app.ts"
   },
   "routes": [
-    { "path": "/", "title": "Home", "description": "Landing page with app pitch and feature overview" },
-    { "path": "/showcase", "title": "Showcase", "description": "Gallery of generated prototype screens" },
-    { "path": "/showcase/:id", "title": "Prototype View", "description": "Full-screen iframe view of a prototype" },
-    { "path": "/generator", "title": "Generator", "description": "Generate new prototypes via LLM" }
+    {
+      "path": "/",
+      "title": "Home",
+      "description": "Landing page with app pitch and feature overview"
+    },
+    {
+      "path": "/showcase",
+      "title": "Showcase",
+      "description": "Gallery of app concept prototypes"
+    },
+    {
+      "path": "/showcase/:id",
+      "title": "Prototype Detail",
+      "description": "Full product brief: images, features, competitive analysis, optional HTML mockup"
+    }
   ],
-  "technology": ["React 18", "TypeScript", "Vite", "Tailwind CSS", "React Router v6"],
+  "technology": ["React 19", "TypeScript 6", "Vite 8", "Tailwind CSS 4", "React Router v7"],
   "deployment": {
     "targets": ["firebase", "cloudflare"],
     "active": null,
@@ -32,9 +43,7 @@
   },
   "keyFiles": {
     "mainConfig": "src/config/app.ts",
-    "envExample": ".env.example",
     "prototypeIndex": "public/prototypes/index.json",
-    "llmAbstraction": "src/lib/llm.ts",
-    "cliGenerator": "scripts/generate.ts"
+    "cliScaffolder": "scripts/generate.ts"
   }
 }

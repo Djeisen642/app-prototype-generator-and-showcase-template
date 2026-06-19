@@ -1,24 +1,48 @@
 {
   "prototypes": [
     {
-      "id": "sample-landing-page",
-      "title": "Landing Page",
-      "description": "Main marketing landing page showing the app's value proposition, features, and call-to-action",
-      "type": "landing-page",
-      "style": "minimal",
-      "createdAt": "2025-01-01T00:00:00Z",
+      "id": "sample-taskflow",
+      "title": "TaskFlow",
+      "tagline": "Project management without the overhead",
+      "description": "A lightweight task management tool for small teams who find Jira overkill and Trello too basic. Real-time collaboration, smart deadlines, and zero setup time.",
+      "problem": "Most project tools are either bloated enterprise software or too simple for growing teams. Small teams need something powerful enough to track complex work but simple enough to actually use daily.",
+      "targetUsers": "Small engineering teams (5–20 people) and early-stage startups",
+      "features": [
+        {
+          "icon": "⚡",
+          "title": "Instant Setup",
+          "description": "Create a workspace and invite your team in under 2 minutes. No onboarding calls required."
+        },
+        {
+          "icon": "🔁",
+          "title": "Smart Recurring Tasks",
+          "description": "Define recurring patterns once. TaskFlow handles scheduling, reminders, and rollover automatically."
+        },
+        {
+          "icon": "📊",
+          "title": "Burndown Charts",
+          "description": "Visualize sprint progress without configuring a dashboard. Charts update in real time as tasks close."
+        },
+        {
+          "icon": "🔗",
+          "title": "GitHub Integration",
+          "description": "Link PRs and commits to tasks. Status updates automatically when code ships."
+        }
+      ],
+      "competitive": {
+        "competitors": ["Jira", "Trello", "Asana", "Linear"],
+        "advantages": [
+          "Flat-rate pricing — no per-seat fees for small teams",
+          "5-minute setup vs. hours of Jira configuration",
+          "Built-in time tracking with no plugins",
+          "AI-suggested task breakdowns from plain-language descriptions"
+        ]
+      },
+      "images": [],
       "htmlFile": "/prototypes/sample-landing-page.html",
-      "tags": ["sample", "marketing"]
-    },
-    {
-      "id": "sample-dashboard",
-      "title": "Main Dashboard",
-      "description": "Primary dashboard view showing key metrics, a weekly activity chart, plan breakdown, and recent activity table",
-      "type": "dashboard",
-      "style": "dark",
-      "createdAt": "2025-01-01T00:00:00Z",
-      "htmlFile": "/prototypes/sample-dashboard.html",
-      "tags": ["sample", "core"]
+      "tags": ["productivity", "project-management", "saas"],
+      "status": "concept",
+      "createdAt": "2025-01-01T00:00:00Z"
     }
   ],
   "lastUpdated": "2025-01-01T00:00:00Z"
