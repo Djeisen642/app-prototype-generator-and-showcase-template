@@ -18,6 +18,24 @@ interface Props {
 
 const { prototype } = Astro.props;
 const { images, competitive, features } = prototype;
+
+// Tiny gallery island: swap the main image when a thumbnail is clicked. Plain
+// DOM, no framework runtime — and only emitted when there's a multi-image
+// gallery to drive (see below), so single-image / image-less pages ship no JS.
+const galleryScript = `
+  const gallery = document.querySelector("[data-gallery]");
+  if (gallery) {
+    const main = gallery.querySelector("[data-gallery-main]");
+    const thumbs = gallery.querySelectorAll("[data-gallery-thumb]");
+    thumbs.forEach((thumb) => {
+      thumb.addEventListener("click", () => {
+        if (main && thumb.dataset.src) main.src = thumb.dataset.src;
+        thumbs.forEach((t) => t.removeAttribute("data-active"));
+        thumb.setAttribute("data-active", "");
+      });
+    });
+  }
+`;
 ---
 
 <Layout title={prototype.title}>
@@ -64,19 +82,22 @@ const { images, competitive, features } = prototype;
             />
           </div>
           {images.length > 1 && (
-            <div class="flex gap-2 mt-3">
-              {images.map((src, i) => (
-                <button
-                  type="button"
-                  data-gallery-thumb
-                  data-src={src}
-                  data-active={i === 0 ? "" : undefined}
-                  class="flex-1 h-16 rounded-lg overflow-hidden border-2 transition-colors border-slate-700 opacity-60 hover:opacity-100 data-[active]:border-primary data-[active]:opacity-100"
-                >
-                  <img src={src} alt="" class="w-full h-full object-cover" />
-                </button>
-              ))}
-            </div>
+            <Fragment>
+              <div class="flex gap-2 mt-3">
+                {images.map((src, i) => (
+                  <button
+                    type="button"
+                    data-gallery-thumb
+                    data-src={src}
+                    data-active={i === 0 ? "" : undefined}
+                    class="flex-1 h-16 rounded-lg overflow-hidden border-2 transition-colors border-slate-700 opacity-60 hover:opacity-100 data-[active]:border-primary data-[active]:opacity-100"
+                  >
+                    <img src={src} alt="" class="w-full h-full object-cover" />
+                  </button>
+                ))}
+              </div>
+              <script is:inline set:html={galleryScript} />
+            </Fragment>
           )}
         </div>
       ) : (
@@ -190,20 +211,3 @@ const { images, competitive, features } = prototype;
     }
   </div>
 </Layout>
-
-<script>
-  // Tiny gallery island: swap the main image when a thumbnail is clicked.
-  // Vanilla DOM — no framework runtime ships to the browser.
-  document.querySelectorAll<HTMLElement>("[data-gallery]").forEach((gallery) => {
-    const main = gallery.querySelector<HTMLImageElement>("[data-gallery-main]");
-    const thumbs = gallery.querySelectorAll<HTMLButtonElement>("[data-gallery-thumb]");
-    thumbs.forEach((thumb) => {
-      thumb.addEventListener("click", () => {
-        const src = thumb.dataset.src;
-        if (main && src) main.src = src;
-        thumbs.forEach((t) => t.removeAttribute("data-active"));
-        thumb.setAttribute("data-active", "");
-      });
-    });
-  });
-</script>

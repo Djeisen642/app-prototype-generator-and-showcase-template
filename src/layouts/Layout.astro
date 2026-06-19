@@ -17,14 +17,17 @@ const navLinks = [
 ];
 const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
-// Brand tokens live in src/config/app.ts. Inject them as CSS variables so the
-// whole UI (and every Tailwind `*-primary` / `*-accent` utility) updates from
-// that single file — same behavior the old React entrypoint applied at runtime.
-const brandVars = `:root{--color-primary:${appConfig.primaryColor};--color-accent:${appConfig.accentColor};--color-bg:${appConfig.backgroundColor};--font-sans:${appConfig.fontFamily};}`;
+// Brand tokens live in src/config/app.ts. Inject them as CSS variables on the
+// root element so the whole UI (and every Tailwind `*-primary` / `*-accent`
+// utility) updates from that single file — same as the old React entrypoint,
+// which set them on documentElement. An inline style on <html> wins over the
+// `@theme` defaults regardless of stylesheet order; a `:root {}` <style> block
+// does not (Astro emits the bundled CSS after it, so the defaults would win).
+const brandVars = `--color-primary:${appConfig.primaryColor};--color-accent:${appConfig.accentColor};--color-bg:${appConfig.backgroundColor};--font-sans:${appConfig.fontFamily};`;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" style={brandVars}>
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -36,7 +39,6 @@ const brandVars = `:root{--color-primary:${appConfig.primaryColor};--color-accen
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <style is:inline set:html={brandVars}></style>
   </head>
   <body class="min-h-screen bg-slate-950 text-slate-100">
     <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50">
