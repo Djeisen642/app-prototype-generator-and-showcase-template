@@ -4,6 +4,17 @@ This file helps AI coding assistants — Claude Code, GitHub Copilot Workspace, 
 
 ---
 
+## Before You Start
+
+Read in this order for fastest context:
+1. `src/config/app.ts` — what this app is
+2. This file — how the repo works
+3. `public/prototypes/index.json` — what prototypes exist
+
+Run `npm run build` before making changes to confirm the baseline compiles.
+
+---
+
 ## What This Repo Does
 
 This is a template for showcasing an app idea through AI-generated HTML prototypes. It has two core parts:
@@ -168,11 +179,33 @@ npm run deploy:firebase   # Build + deploy to Firebase Hosting
 
 ## Conventions
 
-- All user-facing configuration is in `src/config/app.ts` — never scattered elsewhere
-- Generated prototype HTML must be self-contained (no external scripts; Google Fonts allowed)
-- `public/prototypes/index.json` is the single registry for the gallery
-- TypeScript strict mode is on — no `any`, no unused variables
-- Tailwind CSS classes use CSS variables (`var(--color-primary)`) so brand colors update everywhere
+**Do:**
+- Keep all user-facing config in `src/config/app.ts` — never scatter it elsewhere
+- Run `npm run build` after any change to verify TypeScript compiles
+- Before creating a new file, check whether an existing one can be extended instead
+- Keep prototype HTML self-contained — styles in `<style>`, no external `<script src>` (Google Fonts `<link>` is fine)
+- Use `var(--color-primary)` / `var(--color-accent)` for brand colors so they update everywhere
+
+**Do not:**
+- Commit `.env.local` — it contains API keys
+- Use `any` in TypeScript or leave unused variables
+- Add logic to `public/prototypes/index.json` — it is data only
+- Modify `docs/` or `AGENTS.md` unless the structure actually changed
+
+---
+
+## Maintaining This File
+
+Update this file when the project structure changes — not speculatively, only when something actually changes:
+
+| Change | What to update here |
+|--------|-------------------|
+| New file added | Key Files Reference (if it matters to agents) |
+| New route added | `public/app-index.json` routes array too |
+| New npm script added | Development Commands section |
+| New LLM provider added | LLM Provider Configuration table |
+
+**Keep it concise.** Before adding anything, check whether it already exists in another section. Prefer updating existing content over adding new sections. If something belongs in `docs/`, put it there instead.
 
 ---
 
