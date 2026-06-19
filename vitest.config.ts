@@ -1,11 +1,10 @@
 import { defineConfig } from "vitest/config";
-import react from "@vitejs/plugin-react";
 
+// Tests cover the framework-agnostic logic (app config, status styling,
+// prototype data loading). No DOM is needed — these run in plain Node.
 export default defineConfig({
-  plugins: [react()],
   test: {
-    environment: "jsdom",
-    setupFiles: ["./src/test/setup.ts"],
+    environment: "node",
     globals: true,
   },
 });

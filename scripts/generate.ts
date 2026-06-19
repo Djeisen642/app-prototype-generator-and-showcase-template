@@ -196,7 +196,7 @@ ${competitors.length ? `Beats:    ${competitors.join(", ")}` : ""}
   console.log(`Optional: create an HTML mockup at:`);
   console.log(`  public/prototypes/${id}/mockup.html`);
   console.log(`  Then set "htmlFile": "/prototypes/${id}/mockup.html" in index.json.\n`);
-  console.log(`View at: http://localhost:5173/showcase/${id}`);
+  console.log(`View at: http://localhost:4321/showcase/${id}`);
   console.log(divider + "\n");
 }
 

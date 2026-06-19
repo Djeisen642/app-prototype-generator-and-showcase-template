@@ -95,7 +95,7 @@ firebase init hosting
 
 - Select or create a Firebase project
 - Public directory: `dist`
-- Configure as single-page app: `Yes`
+- Configure as single-page app: `No` (Astro emits a static page per route)
 - Automatic builds with GitHub: `No` (we handle CI manually)
 
 This creates `.firebaserc` with your project ID. Use `.firebaserc.example` as a reference.
@@ -147,9 +147,6 @@ Both deploy the same `dist/` folder. You can switch between them any time by upd
 
 ## Environment Variables in Production
 
-`VITE_*` env vars are embedded at build time. For production:
+The showcase is a fully static Astro site and needs **no runtime environment variables** — all app configuration lives in `src/config/app.ts` and is baked into the HTML at build time.
 
-- **Cloudflare Pages**: Add env vars in the Cloudflare Pages dashboard under Settings → Environment variables
-- **Firebase Hosting**: Firebase Hosting is purely static; build with env vars set before running `firebase deploy`
-
-> **Warning**: Your LLM API key will be visible in the browser bundle if you deploy the showcase publicly. This is fine for private sharing (team review links), but avoid it for public-facing sites where you don't control who visits. In that case, route generation through a server or remove the live generation feature.
+The only secrets involved are the deploy credentials (the Cloudflare API token / Firebase service account), which belong in your CI provider's secret store, not in the repo. See the GitHub Actions setup above for each host.

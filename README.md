@@ -4,6 +4,8 @@ A template for founders and builders who want to **show an app idea** before wri
 
 No API keys required — prototypes are created by AI agents (Claude Code, Cursor, Codex, etc.), not by the app itself.
 
+Built with **Astro + Tailwind** — every page is prerendered to static HTML (ideal for SEO and AI discovery) and ships virtually no JavaScript.
+
 ---
 
 ## How It Works
@@ -21,7 +23,7 @@ Hand the brief to an AI agent
   → agent optionally creates an HTML mockup
   → agent updates index.json with image paths
         ↓
-npm run dev  →  view the showcase at localhost:5173
+npm run dev  →  view the showcase at localhost:4321
 npm run deploy:cloudflare / deploy:firebase  →  ship it
 ```
 
@@ -51,7 +53,7 @@ Answer the prompts, then give the printed AGENT BRIEF to your AI agent.
 npm run dev
 ```
 
-Open `http://localhost:5173/showcase`.
+Open `http://localhost:4321/showcase`.
 
 ---
 
@@ -60,9 +62,11 @@ Open `http://localhost:5173/showcase`.
 ```
 src/
   config/app.ts          ← START HERE — single source of truth for app identity + design tokens
-  pages/                 ← Home, Showcase, PrototypeView
-  components/            ← Layout, PrototypeCard, FeatureCard
-  lib/                   ← Prototype data helpers
+  pages/                 ← index (Home), showcase/index (gallery), showcase/[id] (detail), 404
+  layouts/               ← Layout.astro — shared page shell (header, footer, brand tokens)
+  components/            ← PrototypeCard, FeatureCard (.astro)
+  lib/                   ← Prototype data loader + status styling
+  styles/                ← global.css (Tailwind entry + base styles)
   types/                 ← TypeScript interfaces
 
 public/
@@ -104,7 +108,7 @@ All visual tokens live in `src/config/app.ts` — change them there and the enti
 
 | Script                      | Description                                |
 | --------------------------- | ------------------------------------------ |
-| `npm run dev`               | Dev server at `localhost:5173`             |
+| `npm run dev`               | Dev server at `localhost:4321`             |
 | `npm run build`             | Production build → `dist/`                 |
 | `npm run preview`           | Preview `dist/` locally                    |
 | `npm run generate`          | Scaffold a new prototype (interactive CLI) |
@@ -136,7 +140,7 @@ npm run deploy:cloudflare
 ```bash
 npm install -g firebase-tools
 firebase login
-firebase init hosting   # public dir: dist, SPA: yes
+firebase init hosting   # public dir: dist, SPA: No (Astro emits static pages)
 npm run deploy:firebase
 ```
 

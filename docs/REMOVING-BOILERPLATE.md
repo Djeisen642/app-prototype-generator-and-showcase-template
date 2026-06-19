@@ -101,5 +101,5 @@ These files should be kept as-is (they're infrastructure, not content):
 - `src/components/` — unless changing the UI design
 - `src/pages/` — unless changing the showcase UX
 - `scripts/generate.ts`
-- `firebase.json`, `vite.config.ts`, `tsconfig.json`
+- `firebase.json`, `astro.config.mjs`, `tsconfig.json`
 - `docs/DEPLOYMENT.md`, `docs/AI-SETUP.md`, `docs/ONBOARDING.md` — these are useful for the user

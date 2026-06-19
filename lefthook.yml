@@ -6,7 +6,7 @@ pre-commit:
     eslint:
       run: npx eslint .
     typecheck:
-      run: npx tsc --noEmit
+      run: npx astro check
 
 pre-push:
   commands:
