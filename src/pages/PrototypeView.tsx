@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { fetchPrototypeIndex } from "../lib/prototypes";
 import type { Prototype } from "../types";
-import { STATUS_STYLES } from "../lib/status";
+import { statusStyle } from "../lib/status";
 
 export default function PrototypeView() {
   const { id } = useParams<{ id: string }>();
@@ -57,7 +57,7 @@ export default function PrototypeView() {
             <p className="text-xl text-slate-300 mt-2">{prototype.tagline}</p>
           </div>
           <span
-            className={`text-sm font-medium px-3 py-1 rounded-full border shrink-0 mt-1 ${STATUS_STYLES[prototype.status]}`}
+            className={`text-sm font-medium px-3 py-1 rounded-full border shrink-0 mt-1 ${statusStyle(prototype.status)}`}
           >
             {prototype.status}
           </span>

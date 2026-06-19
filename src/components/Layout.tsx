@@ -1,6 +1,6 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { appConfig } from "../config/app";
-import { STATUS_STYLES } from "../lib/status";
+import { statusStyle } from "../lib/status";
 
 export default function Layout() {
   const location = useLocation();
@@ -17,7 +17,7 @@ export default function Layout() {
           <Link to="/" className="flex items-center gap-2.5">
             <span className="font-bold text-white">{appConfig.name}</span>
             <span
-              className={`text-xs font-medium px-2 py-0.5 rounded-full border ${STATUS_STYLES[appConfig.status]}`}
+              className={`text-xs font-medium px-2 py-0.5 rounded-full border ${statusStyle(appConfig.status)}`}
             >
               {appConfig.status}
             </span>
