@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AppName — Your Tagline Here</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --accent: #ec4899;
+      --bg: #ffffff;
+      --surface: #f8fafc;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --muted: #64748b;
+    }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+
+    /* Nav */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 64px; border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); z-index: 100;
+    }
+    .logo { font-weight: 800; font-size: 1.15rem; color: var(--primary); letter-spacing: -0.02em; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.9rem; font-weight: 500; }
+    .nav-links a:hover { color: var(--text); }
+    .btn { padding: 0.5rem 1.25rem; border-radius: 0.5rem; font-weight: 600; font-size: 0.875rem; cursor: pointer; border: none; font-family: inherit; }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-dark); }
+
+    /* Hero */
+    .hero { max-width: 960px; margin: 0 auto; padding: 6rem 2rem 4rem; text-align: center; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 0.4rem; margin-bottom: 1.5rem;
+      background: #ede9fe; color: #7c3aed; padding: 0.3rem 0.85rem;
+      border-radius: 100px; font-size: 0.8rem; font-weight: 600;
+    }
+    h1 { font-size: clamp(2.4rem, 6vw, 3.75rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 1.25rem; }
+    .gradient { background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: 1.15rem; color: var(--muted); max-width: 500px; margin: 0 auto 2.5rem; }
+    .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-lg { padding: 0.75rem 2rem; font-size: 1rem; border-radius: 0.65rem; }
+    .btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border); font-family: inherit; font-weight: 600; cursor: pointer; }
+    .btn-outline:hover { border-color: var(--muted); background: var(--surface); }
+
+    /* Social proof */
+    .social { text-align: center; padding: 1.5rem 2rem 3rem; font-size: 0.85rem; color: var(--muted); }
+    .avatars { display: inline-flex; margin-right: 0.5rem; vertical-align: middle; }
+    .av { width: 28px; height: 28px; border-radius: 50%; border: 2px solid #fff; margin-left: -8px; display: inline-block; }
+    .av:first-child { margin-left: 0; }
+
+    /* Features */
+    .section { max-width: 1100px; margin: 0 auto; padding: 5rem 2rem; }
+    .section-tag { text-align: center; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.72rem; font-weight: 700; color: var(--primary); margin-bottom: 0.75rem; }
+    .section-title { text-align: center; font-size: clamp(1.75rem, 4vw, 2.25rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+    .section-sub { text-align: center; color: var(--muted); max-width: 480px; margin: 0 auto 3.5rem; }
+
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.75rem; transition: box-shadow 0.2s, transform 0.2s; }
+    .card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.07); transform: translateY(-2px); }
+    .card-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .card h3 { font-weight: 700; font-size: 1rem; margin-bottom: 0.4rem; }
+    .card p { color: var(--muted); font-size: 0.875rem; line-height: 1.6; }
+
+    /* Steps */
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+    .step { text-align: center; }
+    .step-num { width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: #fff; font-weight: 800; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+    .step h3 { font-weight: 700; margin-bottom: 0.4rem; }
+    .step p { color: var(--muted); font-size: 0.875rem; }
+
+    /* CTA Banner */
+    .cta-wrap { padding: 0 2rem 4rem; max-width: 1100px; margin: 0 auto; }
+    .cta { background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 1.5rem; padding: 4rem 2rem; text-align: center; }
+    .cta h2 { font-size: 2rem; font-weight: 800; color: #fff; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
+    .cta p { color: rgba(255,255,255,0.85); margin-bottom: 2rem; }
+    .btn-white { background: #fff; color: var(--primary); font-weight: 700; }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; color: var(--muted); font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">AppName</div>
+  <div class="nav-links">
+    <a href="#">Features</a>
+    <a href="#">Pricing</a>
+    <a href="#">Docs</a>
+    <button class="btn btn-primary">Get Started Free</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="badge">✨ Now in beta — 2,400+ users</div>
+  <h1>The smarter way to<br><span class="gradient">do the thing</span></h1>
+  <p class="hero-sub">AppName helps [target users] finally [solve the core problem] — without the frustration of [the old way].</p>
+  <div class="hero-cta">
+    <button class="btn btn-primary btn-lg">Start for free →</button>
+    <button class="btn btn-outline btn-lg">See how it works</button>
+  </div>
+</div>
+
+<div class="social">
+  <span class="avatars">
+    <span class="av" style="background:linear-gradient(135deg,#6366f1,#ec4899)"></span>
+    <span class="av" style="background:linear-gradient(135deg,#ec4899,#f97316)"></span>
+    <span class="av" style="background:linear-gradient(135deg,#06b6d4,#6366f1)"></span>
+    <span class="av" style="background:linear-gradient(135deg,#10b981,#06b6d4)"></span>
+  </span>
+  Trusted by <strong>2,400+ teams</strong> — including teams at Notion, Linear, and Vercel
+</div>
+
+<div class="section">
+  <p class="section-tag">Features</p>
+  <h2 class="section-title">Everything you need, nothing you don't</h2>
+  <p class="section-sub">Built for [target users] who need [outcome] without the overhead of enterprise tooling.</p>
+  <div class="features">
+    <div class="card"><div class="card-icon">⚡</div><h3>Feature One</h3><p>What this feature does and the specific value it provides in the user's workflow.</p></div>
+    <div class="card"><div class="card-icon">🎯</div><h3>Feature Two</h3><p>What this feature does and the specific value it provides in the user's workflow.</p></div>
+    <div class="card"><div class="card-icon">🔒</div><h3>Feature Three</h3><p>What this feature does and the specific value it provides in the user's workflow.</p></div>
+    <div class="card"><div class="card-icon">📊</div><h3>Feature Four</h3><p>What this feature does and the specific value it provides in the user's workflow.</p></div>
+    <div class="card"><div class="card-icon">🚀</div><h3>Feature Five</h3><p>What this feature does and the specific value it provides in the user's workflow.</p></div>
+    <div class="card"><div class="card-icon">💬</div><h3>Feature Six</h3><p>What this feature does and the specific value it provides in the user's workflow.</p></div>
+  </div>
+</div>
+
+<div class="section" style="padding-top:0">
+  <p class="section-tag">How It Works</p>
+  <h2 class="section-title">Up and running in 3 steps</h2>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><h3>Connect your [thing]</h3><p>Sign up and link your existing [data / tool] in under 60 seconds. No migration needed.</p></div>
+    <div class="step"><div class="step-num">2</div><h3>Configure your workflow</h3><p>Set up rules and automations that match how your team actually works.</p></div>
+    <div class="step"><div class="step-num">3</div><h3>Ship faster</h3><p>Let AppName handle the repetitive parts so you can focus on work that matters.</p></div>
+  </div>
+</div>
+
+<div class="cta-wrap">
+  <div class="cta">
+    <h2>Ready to get started?</h2>
+    <p>Join thousands of teams already using AppName. Free forever for small teams.</p>
+    <button class="btn btn-white btn-lg">Start for free — no credit card needed</button>
+  </div>
+</div>
+
+<footer>© 2025 AppName. Built for [target users].</footer>
+
+</body>
+</html>

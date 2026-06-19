@@ -1,0 +1,25 @@
+{
+  "prototypes": [
+    {
+      "id": "sample-landing-page",
+      "title": "Landing Page",
+      "description": "Main marketing landing page showing the app's value proposition, features, and call-to-action",
+      "type": "landing-page",
+      "style": "minimal",
+      "createdAt": "2025-01-01T00:00:00Z",
+      "htmlFile": "/prototypes/sample-landing-page.html",
+      "tags": ["sample", "marketing"]
+    },
+    {
+      "id": "sample-dashboard",
+      "title": "Main Dashboard",
+      "description": "Primary dashboard view showing key metrics, a weekly activity chart, plan breakdown, and recent activity table",
+      "type": "dashboard",
+      "style": "dark",
+      "createdAt": "2025-01-01T00:00:00Z",
+      "htmlFile": "/prototypes/sample-dashboard.html",
+      "tags": ["sample", "core"]
+    }
+  ],
+  "lastUpdated": "2025-01-01T00:00:00Z"
+}

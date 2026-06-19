@@ -1,0 +1,14 @@
+# Cloudflare Pages configuration
+# See docs/DEPLOYMENT.md for full setup instructions.
+
+name = "your-app-name"
+compatibility_date = "2024-01-01"
+pages_build_output_dir = "dist"
+
+# First-time setup:
+#   npm install -g wrangler
+#   wrangler login
+#   wrangler pages project create your-app-name
+#
+# Deploy:
+#   npm run deploy:cloudflare

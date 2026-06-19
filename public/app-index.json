@@ -1,0 +1,40 @@
+{
+  "version": "1.0",
+  "type": "app-prototype-showcase",
+  "template": "app-prototype-generator-and-showcase-template",
+  "note": "Update this file after editing src/config/app.ts",
+  "app": {
+    "name": "Your App Name",
+    "tagline": "One sentence that captures what makes your app special",
+    "description": "Update this after editing src/config/app.ts",
+    "status": "concept",
+    "targetUsers": "Update this after editing src/config/app.ts"
+  },
+  "routes": [
+    { "path": "/", "title": "Home", "description": "Landing page with app pitch and feature overview" },
+    { "path": "/showcase", "title": "Showcase", "description": "Gallery of generated prototype screens" },
+    { "path": "/showcase/:id", "title": "Prototype View", "description": "Full-screen iframe view of a prototype" },
+    { "path": "/generator", "title": "Generator", "description": "Generate new prototypes via LLM" }
+  ],
+  "technology": ["React 18", "TypeScript", "Vite", "Tailwind CSS", "React Router v6"],
+  "deployment": {
+    "targets": ["firebase", "cloudflare"],
+    "active": null,
+    "buildCommand": "npm run build",
+    "outputDirectory": "dist"
+  },
+  "ai": {
+    "agentsFile": "/AGENTS.md",
+    "claudeFile": "/CLAUDE.md",
+    "llmsFile": "/llms.txt",
+    "onboarding": "/docs/ONBOARDING.md",
+    "removingBoilerplate": "/docs/REMOVING-BOILERPLATE.md"
+  },
+  "keyFiles": {
+    "mainConfig": "src/config/app.ts",
+    "envExample": ".env.example",
+    "prototypeIndex": "public/prototypes/index.json",
+    "llmAbstraction": "src/lib/llm.ts",
+    "cliGenerator": "scripts/generate.ts"
+  }
+}

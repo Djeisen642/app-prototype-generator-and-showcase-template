@@ -1,0 +1,34 @@
+# Your App Name
+
+> A prototype showcase for [Your App Name] — update this file after editing src/config/app.ts.
+
+## What This Site Is
+
+This site displays AI-generated HTML prototypes of [Your App Name] before the app is built.
+It is used to validate the concept with users and investors.
+
+## Navigation
+
+- /: Landing page with app pitch, target users, and key features
+- /showcase: Gallery of all prototype screens
+- /showcase/:id: Full-screen iframe view of a specific prototype
+- /generator: Tool for generating new prototypes via LLM
+
+## Prototype Gallery
+
+All prototypes are listed at /prototypes/index.json (machine-readable JSON).
+
+## App Configuration
+
+Primary configuration: src/config/app.ts
+All prototypes live in: public/prototypes/
+
+## AI Agent Instructions
+
+Generic agents: /AGENTS.md
+Claude Code: /CLAUDE.md
+Customization checklist: /docs/REMOVING-BOILERPLATE.md
+
+## Template
+
+Built from: https://github.com/djeisen642/app-prototype-generator-and-showcase-template
