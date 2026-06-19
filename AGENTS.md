@@ -1,6 +1,9 @@
 # AI Agent Guide
 
-This file helps AI coding assistants — Claude Code, GitHub Copilot Workspace, Cursor, Windsurf, Gemini CLI, and others — understand and modify this repository.
+This file is the canonical guide for all AI coding assistants — Claude Code, GitHub Copilot Workspace, Cursor, Windsurf, Gemini CLI, and others.
+
+> **Claude Code users:** also read `CLAUDE.md` for Claude-specific commands and settings.
+> **All other agents:** this file is your complete reference.
 
 ---
 

@@ -1,6 +1,6 @@
 # Claude Code Instructions
 
-This file contains Claude Code-specific instructions. For general AI agent guidance, see `AGENTS.md`.
+> **Read `AGENTS.md` first** — it is the canonical guide for this repo (architecture, key files, customization steps, LLM config, commands). This file only adds what is specific to Claude Code on top of that.
 
 ---
 
