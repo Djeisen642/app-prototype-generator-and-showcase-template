@@ -15,6 +15,7 @@ A template for founders and builders who want to **show their app idea** before 
 ## Quick Start
 
 ### Prerequisites
+
 - Node.js 18+
 - An API key from one LLM provider (Anthropic, OpenAI, Google, or any OpenAI-compatible endpoint)
 
@@ -158,24 +159,24 @@ See `docs/REMOVING-BOILERPLATE.md` for the complete checklist (useful to hand to
 
 ## LLM Providers
 
-| Provider | Default Model | Notes |
-|----------|---------------|-------|
-| Anthropic | `claude-sonnet-4-6` | Best HTML output quality |
-| OpenAI | `gpt-4o` | Solid quality, widely available |
-| Google | `gemini-2.0-flash-lite` | Fast, generous free tier |
-| Custom | *(you set it)* | Any OpenAI-compatible endpoint, including Ollama for local models |
+| Provider  | Default Model           | Notes                                                             |
+| --------- | ----------------------- | ----------------------------------------------------------------- |
+| Anthropic | `claude-sonnet-4-6`     | Best HTML output quality                                          |
+| OpenAI    | `gpt-4o`                | Solid quality, widely available                                   |
+| Google    | `gemini-2.0-flash-lite` | Fast, generous free tier                                          |
+| Custom    | _(you set it)_          | Any OpenAI-compatible endpoint, including Ollama for local models |
 
 ---
 
 ## Scripts
 
-| Script | Description |
-|--------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Production build → `dist/` |
-| `npm run preview` | Preview production build locally |
-| `npm run generate` | Generate a new prototype via CLI |
-| `npm run deploy:firebase` | Build and deploy to Firebase Hosting |
+| Script                      | Description                          |
+| --------------------------- | ------------------------------------ |
+| `npm run dev`               | Start development server             |
+| `npm run build`             | Production build → `dist/`           |
+| `npm run preview`           | Preview production build locally     |
+| `npm run generate`          | Generate a new prototype via CLI     |
+| `npm run deploy:firebase`   | Build and deploy to Firebase Hosting |
 | `npm run deploy:cloudflare` | Build and deploy to Cloudflare Pages |
 
 ---
@@ -183,6 +184,7 @@ See `docs/REMOVING-BOILERPLATE.md` for the complete checklist (useful to hand to
 ## AI Agent Setup
 
 This repo is set up for AI coding assistants. See:
+
 - `AGENTS.md` — generic setup for all AI agents (Claude Code, Cursor, Copilot, Gemini CLI, etc.)
 - `CLAUDE.md` — Claude Code-specific instructions
 

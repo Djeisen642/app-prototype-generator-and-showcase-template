@@ -14,7 +14,6 @@ export default function Layout() {
   const navLinks = [
     { to: "/", label: "Home" },
     { to: "/showcase", label: "Showcase" },
-    { to: "/generator", label: "Generator" },
   ];
 
   return (

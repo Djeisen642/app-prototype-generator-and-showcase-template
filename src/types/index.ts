@@ -1,38 +1,29 @@
+export interface Feature {
+  icon: string;
+  title: string;
+  description: string;
+}
+
 export interface Prototype {
   id: string;
   title: string;
+  tagline: string;
   description: string;
-  type: PrototypeType;
-  style: PrototypeStyle;
+  problem?: string;
+  targetUsers?: string;
+  features?: Feature[];
+  competitive?: {
+    competitors?: string[];
+    advantages?: string[];
+  };
+  images: string[];
+  htmlFile?: string;
+  tags: string[];
+  status: "concept" | "mockup" | "prototype";
   createdAt: string;
-  htmlFile: string;
-  tags?: string[];
 }
-
-export type PrototypeType =
-  | "landing-page"
-  | "dashboard"
-  | "mobile-screen"
-  | "onboarding"
-  | "settings"
-  | "other";
-
-export type PrototypeStyle =
-  | "minimal"
-  | "colorful"
-  | "dark"
-  | "corporate"
-  | "playful";
 
 export interface PrototypeIndex {
   prototypes: Prototype[];
   lastUpdated: string;
 }
-
-export interface GeneratorFormData {
-  screenType: PrototypeType;
-  style: PrototypeStyle;
-  description: string;
-}
-
-export type LLMProvider = "openai" | "anthropic" | "google" | "custom";
