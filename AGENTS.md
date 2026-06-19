@@ -229,6 +229,7 @@ npm run deploy:firebase   # Build + deploy to Firebase Hosting
 - Before creating a new file, check whether an existing one can be extended instead
 - Keep prototype HTML mockups self-contained — styles in `<style>`, no external `<script src>`
 - Use `var(--color-primary)` / `var(--color-accent)` for brand colors so they update everywhere
+- Keep the pull request description in sync with the diff — when a PR's functionality diverges from its description, update the description in the same push
 
 **Do not:**
 
