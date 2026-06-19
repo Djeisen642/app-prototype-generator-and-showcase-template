@@ -81,7 +81,7 @@ Open `public/prototypes/index.json` and clear the `prototypes` array (keep the f
 npm run dev
 ```
 
-Open `http://localhost:5173`. You should see your app name, tagline, and features on the home page, and your prototype(s) in the Showcase.
+Open `http://localhost:4321`. You should see your app name, tagline, and features on the home page, and your prototype(s) in the Showcase.
 
 ---
 
@@ -102,7 +102,7 @@ npm run deploy:cloudflare
 ```bash
 npm install -g firebase-tools
 firebase login
-firebase init hosting   # public dir: dist, SPA: yes
+firebase init hosting   # public dir: dist, SPA: No (Astro emits static pages)
 npm run deploy:firebase
 ```
 

@@ -22,7 +22,7 @@ This is a showcase template for app concepts. The owner describes an app idea; a
 
 The site has two parts:
 
-1. **Showcase Gallery** — a React/Vite static site that displays app concept pages
+1. **Showcase Gallery** — an Astro static site that prerenders app concept pages to HTML
 2. **Prototype Scaffolder** — a CLI (`npm run generate`) that collects metadata and scaffolds the files you need to populate
 
 ---
@@ -191,8 +191,8 @@ AI agent follows the brief
   → Updates index.json with image paths
         ↓
 npm run dev / npm run build
-  → React SPA fetches public/prototypes/index.json
-  → Showcase displays prototype cards with images
+  → Astro reads public/prototypes/index.json at build time
+  → Prerenders the gallery + one static detail page per prototype
   → Detail pages show product brief + images + optional interactive mockup
         ↓
 npm run deploy:cloudflare / deploy:firebase
@@ -204,7 +204,7 @@ npm run deploy:cloudflare / deploy:firebase
 ## Development Commands
 
 ```bash
-npm run dev               # Dev server at localhost:5173
+npm run dev               # Dev server at localhost:4321
 npm run build             # Production build → dist/
 npm run preview           # Preview dist/ locally
 npm run generate          # Interactive CLI to scaffold a new prototype

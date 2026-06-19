@@ -1,0 +1,41 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PrototypeCard from "../../components/PrototypeCard.astro";
+import { getPrototypeIndex } from "../../lib/prototypes";
+
+const { prototypes } = getPrototypeIndex();
+const count = prototypes.length;
+---
+
+<Layout title="Showcase">
+  <div class="max-w-6xl mx-auto px-4 py-16">
+    <div class="mb-10">
+      <h1 class="text-3xl font-bold text-white mb-2 tracking-tight">Prototype Showcase</h1>
+      <p class="text-slate-400">
+        {count} concept{count !== 1 ? "s" : ""} — click any to explore
+      </p>
+    </div>
+
+    {
+      count === 0 ? (
+        <div class="text-center py-24 border border-dashed border-slate-700 rounded-2xl">
+          <div class="text-5xl mb-4">💡</div>
+          <h2 class="text-xl font-semibold text-white mb-2">No prototypes yet</h2>
+          <p class="text-slate-400 mb-2 max-w-sm mx-auto">
+            Run the generator to scaffold your first prototype entry, then ask your AI agent to
+            build it out.
+          </p>
+          <code class="inline-block mt-2 px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm text-green-400 font-mono">
+            npm run generate
+          </code>
+        </div>
+      ) : (
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {prototypes.map((prototype) => (
+            <PrototypeCard prototype={prototype} />
+          ))}
+        </div>
+      )
+    }
+  </div>
+</Layout>

@@ -1,34 +1,17 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
-import { fetchPrototypeIndex } from "./prototypes";
+import { describe, it, expect } from "vitest";
+import { getPrototypeIndex } from "./prototypes";
 
-describe("fetchPrototypeIndex", () => {
-  beforeEach(() => {
-    vi.restoreAllMocks();
+describe("getPrototypeIndex", () => {
+  it("loads the prototype registry with the expected shape", () => {
+    const index = getPrototypeIndex();
+    expect(Array.isArray(index.prototypes)).toBe(true);
+    expect(typeof index.lastUpdated).toBe("string");
   });
 
-  it("returns an empty index when fetch fails", async () => {
-    vi.spyOn(global, "fetch").mockResolvedValue({ ok: false } as Response);
-    const result = await fetchPrototypeIndex();
-    expect(result.prototypes).toEqual([]);
-  });
-
-  it("returns an empty index when fetch throws", async () => {
-    vi.spyOn(global, "fetch").mockRejectedValue(new Error("network error"));
-    const result = await fetchPrototypeIndex();
-    expect(result.prototypes).toEqual([]);
-  });
-
-  it("parses and returns the prototype index on success", async () => {
-    const mockData = {
-      prototypes: [{ id: "test-1", title: "Test Screen" }],
-      lastUpdated: "2025-01-01T00:00:00Z",
-    };
-    vi.spyOn(global, "fetch").mockResolvedValue({
-      ok: true,
-      json: () => Promise.resolve(mockData),
-    } as unknown as Response);
-    const result = await fetchPrototypeIndex();
-    expect(result.prototypes).toHaveLength(1);
-    expect(result.prototypes[0].id).toBe("test-1");
+  it("gives every prototype a non-empty id and title", () => {
+    for (const p of getPrototypeIndex().prototypes) {
+      expect(p.id.length).toBeGreaterThan(0);
+      expect(p.title.length).toBeGreaterThan(0);
+    }
   });
 });

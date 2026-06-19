@@ -4,13 +4,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
     "generate": "tsx scripts/generate.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",
+    "check": "astro check",
     "test": "vitest",
     "test:run": "vitest run",
     "coverage": "vitest run --coverage",
@@ -19,31 +20,23 @@
     "deploy:cloudflare": "npm run build && wrangler pages deploy dist"
   },
   "dependencies": {
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7",
-    "react-router-dom": "^7.18.0"
+    "astro": "^5.14.1"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.4",
     "@eslint/js": "^10.0.1",
     "@tailwindcss/vite": "^4.3.1",
-    "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.2",
     "@types/node": "^26.0.0",
-    "@types/react": "^19.2.17",
-    "@types/react-dom": "^19.2.3",
     "@vitest/coverage-v8": "^4.1.9",
-    "@vitejs/plugin-react": "^6.0.2",
     "eslint": "^10.5.0",
-    "eslint-plugin-react-hooks": "^7.1.1",
     "globals": "^17.6.0",
-    "jsdom": "^29.1.1",
     "lefthook": "^2.1.9",
     "prettier": "^3.8.4",
+    "prettier-plugin-astro": "^0.14.1",
     "tailwindcss": "^4.3.1",
     "tsx": "^4.22.4",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.61.1",
-    "vite": "^8.0.16",
     "vitest": "^4.1.9"
   }
 }

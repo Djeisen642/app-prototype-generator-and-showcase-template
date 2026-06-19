@@ -45,7 +45,7 @@ Give this brief to your AI agent. The agent generates images, optionally creates
 npm run dev
 ```
 
-Open `http://localhost:5173/showcase` to see the new prototype card.
+Open `http://localhost:4321/showcase` to see the new prototype card.
 
 ---
 

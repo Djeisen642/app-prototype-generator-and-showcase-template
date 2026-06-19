@@ -45,7 +45,7 @@ export const appConfig = {
   ],
 
   // --- Branding ---
-  // All design tokens are read by main.tsx and applied as CSS variables.
+  // All design tokens are injected as CSS variables by src/layouts/Layout.astro.
   // Change any of these and the entire UI updates — no other files to touch.
   primaryColor: "#6366f1",
   accentColor: "#ec4899",
