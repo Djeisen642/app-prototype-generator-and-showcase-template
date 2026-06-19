@@ -1,7 +1,7 @@
 {
   "prototypes": [
     {
-      "id": "sample-taskflow",
+      "id": "taskflow-sample",
       "title": "TaskFlow",
       "tagline": "Project management without the overhead",
       "description": "A lightweight task management tool for small teams who find Jira overkill and Trello too basic. Real-time collaboration, smart deadlines, and zero setup time.",
@@ -39,7 +39,7 @@
         ]
       },
       "images": [],
-      "htmlFile": "/prototypes/sample-landing-page.html",
+      "htmlFile": "/prototypes/taskflow-sample/mockup.html",
       "tags": ["productivity", "project-management", "saas"],
       "status": "concept",
       "createdAt": "2025-01-01T00:00:00Z"
