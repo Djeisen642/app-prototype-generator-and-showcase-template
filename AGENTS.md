@@ -33,23 +33,24 @@ The site has two parts:
 
 Edit `src/config/app.ts`. Replace every placeholder value:
 
-| Field          | What to put                                          |
-| -------------- | ---------------------------------------------------- |
-| `name`         | The app's actual name                                |
-| `tagline`      | One-sentence pitch                                   |
-| `description`  | 2–3 sentence explanation                             |
-| `targetUsers`  | Who uses this app                                    |
-| `features`     | Replace all 4 with real features (3–6 items)         |
-| `primaryColor` | Brand hex color                                      |
-| `accentColor`  | Secondary brand hex color                            |
-| `deployTarget` | `"firebase"` or `"cloudflare"`                       |
-| `status`       | `"concept"` \| `"prototype"` \| `"beta"` \| `"live"` |
+| Field             | What to put                                                    |
+| ----------------- | -------------------------------------------------------------- |
+| `name`            | The app's actual name                                          |
+| `tagline`         | One-sentence pitch                                             |
+| `description`     | 2–3 sentence explanation                                       |
+| `targetUsers`     | Who uses this app                                              |
+| `features`        | Replace all 4 with real features (3–6 items)                   |
+| `primaryColor`    | Brand hex color                                                |
+| `accentColor`     | Secondary brand hex color                                      |
+| `backgroundColor` | Page background hex (e.g. `#0f172a` dark, `#ffffff` light)     |
+| `fontFamily`      | CSS font-family string (e.g. `"Inter, system-ui, sans-serif"`) |
+| `deployTarget`    | `"firebase"` or `"cloudflare"`                                 |
+| `status`          | `"concept"` \| `"prototype"` \| `"beta"` \| `"live"`           |
 
 ### Step 2 — Remove sample prototypes
 
 ```bash
-rm public/prototypes/sample-landing-page.html
-rm public/prototypes/sample-dashboard.html
+rm -rf public/prototypes/taskflow-*/
 ```
 
 Then clear `public/prototypes/index.json`:
@@ -240,13 +241,16 @@ npm run deploy:firebase   # Build + deploy to Firebase Hosting
 
 ## Maintaining This File
 
-Update this file when the project structure changes — not speculatively, only when something actually changes:
+**Agents must keep `AGENTS.md` and `README.md` accurate.** When you make a structural change, update both files before finishing the task. Do not leave them stale.
 
-| Change               | What to update here                           |
-| -------------------- | --------------------------------------------- |
-| New file added       | Key Files Reference (if it matters to agents) |
-| New route added      | `public/app-index.json` routes array too      |
-| New npm script added | Development Commands section                  |
+| Change                         | Update in `AGENTS.md`                         | Update in `README.md`     |
+| ------------------------------ | --------------------------------------------- | ------------------------- |
+| New file added                 | Key Files Reference (if it matters to agents) | Project Structure section |
+| New field added to `app.ts`    | Step 1 field table + Common Tasks if relevant | Design Tokens table       |
+| New route added                | Architecture diagram + `app-index.json` too   | —                         |
+| New npm script added           | Development Commands section                  | Scripts table             |
+| Prototype sample files changed | Step 2 remove instructions                    | Setup Checklist           |
+| Workflow changed               | Architecture section                          | How It Works section      |
 
 **Keep it concise.** Before adding anything, check whether it already exists in another section. Prefer updating existing content over adding new sections.
 
