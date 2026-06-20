@@ -62,6 +62,7 @@ const brandVars = `--color-primary:${appConfig.primaryColor};--color-accent:${ap
             navLinks.map(({ href, label }) => (
               <a
                 href={href}
+                aria-current={isActive(href) ? "page" : undefined}
                 class={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
                   isActive(href)
                     ? "bg-slate-700 text-white"

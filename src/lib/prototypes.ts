@@ -8,5 +8,11 @@ import type { PrototypeIndex } from "../types";
 const indexPath = fileURLToPath(new URL("../../public/prototypes/index.json", import.meta.url));
 
 export function getPrototypeIndex(): PrototypeIndex {
-  return JSON.parse(readFileSync(indexPath, "utf-8")) as PrototypeIndex;
+  try {
+    return JSON.parse(readFileSync(indexPath, "utf-8")) as PrototypeIndex;
+  } catch {
+    throw new Error(
+      `Cannot read prototype index at ${indexPath} — run "npm run generate" to create it`
+    );
+  }
 }
