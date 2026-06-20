@@ -11,6 +11,13 @@
   box-sizing: border-box;
 }
 
+/* Clear, branded keyboard-focus indicator (keyboard + screen-reader users). */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 body {
   margin: 0;
   font-family: var(--font-sans);

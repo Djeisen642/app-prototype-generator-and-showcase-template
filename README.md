@@ -4,7 +4,7 @@ A template for founders and builders who want to **show an app idea** before wri
 
 No API keys required — prototypes are created by AI agents (Claude Code, Cursor, Codex, etc.), not by the app itself.
 
-Built with **Astro + Tailwind** — every page is prerendered to static HTML (ideal for SEO and AI discovery) and ships virtually no JavaScript.
+Built with **Astro + Tailwind** — every page is prerendered to static HTML (ideal for SEO and AI discovery), ships virtually no JavaScript, and is keyboard- and screen-reader-accessible (enforced by strict `jsx-a11y` linting in CI).
 
 ---
 
