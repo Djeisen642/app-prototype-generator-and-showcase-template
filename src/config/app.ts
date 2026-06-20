@@ -1,8 +1,8 @@
 // ============================================================
-// APP CONFIGURATION — Start here
+// PORTFOLIO CONFIGURATION — Start here
 // ============================================================
-// This is the single file you need to edit to make this
-// template yours. Change every value in this file.
+// This file describes YOU and your portfolio, not any single
+// app idea. Change every value to make this template yours.
 //
 // AI Agents: see AGENTS.md for a step-by-step checklist.
 // ============================================================
@@ -11,36 +11,40 @@ import type { Status } from "../types";
 
 export const appConfig = {
   // --- Identity ---
-  // Replace these with your real app details.
-  name: "Your App Name",
-  tagline: "One sentence that captures what makes your app special",
+  // Describe your portfolio, not a single app.
+  name: "Your Portfolio Name",
+  tagline: "One sentence about you or what you're building toward",
   description:
-    "A 2–3 sentence description of what problem your app solves, " +
-    "who it helps, and what makes it different from existing solutions.",
+    "A 2–3 sentence description of who you are, what kinds of ideas " +
+    "you explore, and why you build them.",
 
-  targetUsers: "Describe your primary user — their role, frustrations, and goals",
+  targetUsers:
+    "Who this portfolio is for — other builders, collaborators, potential co-founders, etc.",
 
-  // --- Key Features (show 3–6) ---
+  // --- Approach / Focus Areas (show 3–6) ---
+  // These appear on the home page as "My Approach".
+  // Use them to describe your building philosophy or areas of interest,
+  // not features of a product.
   features: [
     {
       icon: "⚡",
-      title: "Feature One",
-      description: "What this feature does and why users will love it",
+      title: "Principle One",
+      description: "A principle or focus area that shapes how you approach ideas",
     },
     {
       icon: "🎯",
-      title: "Feature Two",
-      description: "What this feature does and why users will love it",
+      title: "Principle Two",
+      description: "A principle or focus area that shapes how you approach ideas",
     },
     {
       icon: "🔒",
-      title: "Feature Three",
-      description: "What this feature does and why users will love it",
+      title: "Principle Three",
+      description: "A principle or focus area that shapes how you approach ideas",
     },
     {
       icon: "📊",
-      title: "Feature Four",
-      description: "What this feature does and why users will love it",
+      title: "Principle Four",
+      description: "A principle or focus area that shapes how you approach ideas",
     },
   ],
 

@@ -18,11 +18,11 @@ Run `npm run build` before making changes to confirm the baseline compiles.
 
 ## What This Repo Does
 
-This is a showcase template for app concepts. The owner describes an app idea; an AI agent turns it into a polished product brief — mockup images, competitive analysis, feature breakdown — and adds it to the gallery.
+This is a personal showcase for every app idea the owner wants to explore — all in one place. Each concept gets its own polished product brief (mockup images, competitive analysis, feature breakdown), built out by an AI agent and added to the gallery. The result is a living collection of everything the owner is thinking about building, not a showcase for any single product.
 
 The site has two parts:
 
-1. **Showcase Gallery** — an Astro static site that prerenders app concept pages to HTML
+1. **Showcase Gallery** — an Astro static site that prerenders a card and detail page per concept
 2. **Prototype Scaffolder** — a CLI (`npm run generate`) that collects metadata and scaffolds the files you need to populate
 
 ---
@@ -33,19 +33,19 @@ The site has two parts:
 
 Edit `src/config/app.ts`. Replace every placeholder value:
 
-| Field             | What to put                                                        |
-| ----------------- | ------------------------------------------------------------------ |
-| `name`            | The app's actual name                                              |
-| `tagline`         | One-sentence pitch                                                 |
-| `description`     | 2–3 sentence explanation                                           |
-| `targetUsers`     | Who uses this app                                                  |
-| `features`        | Replace all 4 with real features (3–6 items)                       |
-| `primaryColor`    | Brand hex color                                                    |
-| `accentColor`     | Secondary brand hex color                                          |
-| `backgroundColor` | Page background hex (e.g. `#0f172a` dark, `#ffffff` light)         |
-| `fontFamily`      | CSS font-family string (e.g. `"Inter, system-ui, sans-serif"`)     |
-| `deployTarget`    | `"firebase"` or `"cloudflare"`                                     |
-| `status`          | `"concept"` \| `"mockup"` \| `"prototype"` \| `"beta"` \| `"live"` |
+| Field             | What to put                                                                         |
+| ----------------- | ----------------------------------------------------------------------------------- |
+| `name`            | Your portfolio name (e.g. "Jason's App Lab", "Side Project Studio")                 |
+| `tagline`         | One sentence about you or what you're building toward                               |
+| `description`     | 2–3 sentences about who you are, what kinds of ideas you explore, and why           |
+| `targetUsers`     | Who this portfolio is for — other builders, collaborators, potential co-founders    |
+| `features`        | Your building principles or focus areas (3–6) — shown as "My Approach" on home page |
+| `primaryColor`    | Brand hex color                                                                     |
+| `accentColor`     | Secondary brand hex color                                                           |
+| `backgroundColor` | Page background hex (e.g. `#0f172a` dark, `#ffffff` light)                          |
+| `fontFamily`      | CSS font-family string (e.g. `"Inter, system-ui, sans-serif"`)                      |
+| `deployTarget`    | `"firebase"` or `"cloudflare"`                                                      |
+| `status`          | `"concept"` \| `"mockup"` \| `"prototype"` \| `"beta"` \| `"live"`                  |
 
 ### Step 2 — Remove sample prototypes
 
