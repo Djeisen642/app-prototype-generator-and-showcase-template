@@ -43,7 +43,7 @@ const firstImage = prototype.images[0];
       <span
         class={`text-xs font-medium px-2 py-0.5 rounded-full border shrink-0 ${statusStyle(prototype.status)}`}
       >
-        {prototype.status}
+        <span class="sr-only">Status: </span>{prototype.status}
       </span>
     </div>
     <p class="text-sm text-slate-400 leading-relaxed line-clamp-2">{prototype.tagline}</p>

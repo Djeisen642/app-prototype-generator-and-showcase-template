@@ -18,24 +18,6 @@ interface Props {
 
 const { prototype } = Astro.props;
 const { images, competitive, features } = prototype;
-
-// Tiny gallery island: swap the main image when a thumbnail is clicked. Plain
-// DOM, no framework runtime — and only emitted when there's a multi-image
-// gallery to drive (see below), so single-image / image-less pages ship no JS.
-const galleryScript = `
-  const gallery = document.querySelector("[data-gallery]");
-  if (gallery) {
-    const main = gallery.querySelector("[data-gallery-main]");
-    const thumbs = gallery.querySelectorAll("[data-gallery-thumb]");
-    thumbs.forEach((thumb) => {
-      thumb.addEventListener("click", () => {
-        if (main && thumb.dataset.src) main.src = thumb.dataset.src;
-        thumbs.forEach((t) => t.removeAttribute("data-active"));
-        thumb.setAttribute("data-active", "");
-      });
-    });
-  }
-`;
 ---
 
 <Layout title={prototype.title}>
@@ -97,7 +79,6 @@ const galleryScript = `
                   </button>
                 ))}
               </div>
-              <script is:inline set:html={galleryScript} />
             </Fragment>
           )}
         </div>
@@ -149,7 +130,9 @@ const galleryScript = `
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {features.map((f) => (
               <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-5">
-                <div class="text-2xl mb-2">{f.icon}</div>
+                <div class="text-2xl mb-2" aria-hidden="true">
+                  {f.icon}
+                </div>
                 <h3 class="font-semibold text-white mb-1">{f.title}</h3>
                 <p class="text-sm text-slate-400 leading-relaxed">{f.description}</p>
               </div>
@@ -218,3 +201,18 @@ const galleryScript = `
     }
   </div>
 </Layout>
+
+<script>
+  const gallery = document.querySelector("[data-gallery]");
+  if (gallery) {
+    const main = gallery.querySelector<HTMLImageElement>("[data-gallery-main]");
+    const thumbs = gallery.querySelectorAll<HTMLElement>("[data-gallery-thumb]");
+    thumbs.forEach((thumb) => {
+      thumb.addEventListener("click", () => {
+        if (main && thumb.dataset.src) main.src = thumb.dataset.src;
+        thumbs.forEach((t) => t.removeAttribute("data-active"));
+        thumb.setAttribute("data-active", "");
+      });
+    });
+  }
+</script>

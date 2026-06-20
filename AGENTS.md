@@ -145,6 +145,61 @@ When asked to add a new app concept prototype:
 
 ---
 
+## Adversarial Review — Prototype Quality Gate
+
+Before marking a prototype complete, run this four-panel review. Be brutal and specific; surface the worst offense in each dimension and fix it before shipping.
+
+### 1. Linus Torvalds — Code Quality
+
+> "Where is this code sloppy, over-engineered, or fundamentally broken?"
+
+Prompts:
+
+- Is every data-access path wrapped in a meaningful try/catch that names the file and tells the dev what to do? (`getPrototypeIndex` model)
+- Are inline `<script>` blocks written as real HTML, not as string variables fed into `set:html`?
+- Does `index.json` validate on load, or does a malformed entry silently corrupt the gallery?
+- Is there any TypeScript `any`, unused import, or redundant null-check (`x && x.length > 0` when `x` is already typed as optional)?
+- Are image paths in `index.json` actually relative to `public/`? A wrong path fails silently at render time.
+
+### 2. Steve Jobs — Design
+
+> "What looks cluttered, unpolished, or half-hearted?"
+
+Prompts:
+
+- Is there more than one CTA pointing to the same destination on a single page? Cut it to one.
+- Do hover states feel satisfying? `opacity-90` is lazy — use a real color shift or `brightness-110`.
+- Is there any boilerplate copy that a real user would never say? ("Everything you need, nothing you don't.") Replace it with something specific to this prototype.
+- Does the empty-state (no mockup images yet) look intentional or abandoned?
+- Is every decorative gradient, glow, or background doing real visual work, or is it noise?
+
+### 3. Steve Krug — Usability
+
+> "Where will a user stop and have to think?"
+
+Prompts:
+
+- Does any UI element require an instruction label to explain it? ("click any to explore") If so, fix the affordance instead.
+- Is the back-navigation link high enough contrast to find without searching?
+- Does clicking a gallery thumbnail produce immediate, unambiguous feedback?
+- Is any interactive element hidden behind a non-obvious disclosure widget (`<details>`) with no visual affordance?
+- Can a first-time visitor understand the page's purpose in under 5 seconds without reading the body copy?
+
+### 4. Marcy Sutton — Accessibility
+
+> "Where are the missing aria-labels, broken focus states, or semantic HTML errors?"
+
+Prompts:
+
+- Does every status badge have `<span class="sr-only">Status: </span>` before the visible text?
+- Are all emoji and decorative icon elements marked `aria-hidden="true"`?
+- Do active nav links carry `aria-current="page"`?
+- Does every icon-only button have an `aria-label`? (Gallery thumbnails: "Show mockup screen N" is table stakes — include a content hint if possible.)
+- Is `<details>/<summary>` being used? Verify AT announces open/closed state correctly — both text variants must not be simultaneously in the a11y tree.
+- Run `npm run lint` — the strict `jsx-a11y` rules catch missing alt text and unlabelled controls, but they miss `aria-current`, `aria-hidden` on inline emoji, and `sr-only` pattern gaps.
+
+---
+
 ## Key Files Reference
 
 | File                           | Purpose                                     | Edit When                        |
