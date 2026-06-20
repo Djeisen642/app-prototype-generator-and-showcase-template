@@ -189,6 +189,8 @@ Prompts:
 
 > "Is this worth building at all?"
 
+**Skip this panel** if the prototype's `tags` include `"fun"` or `"experiment"` — not everything needs a market.
+
 Prompts:
 
 - Who, specifically, wants this — not a persona, a real type of person? If the answer is "anyone who…" it's too broad; narrow it until it hurts.
