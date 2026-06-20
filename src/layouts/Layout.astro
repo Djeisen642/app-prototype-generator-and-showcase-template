@@ -41,6 +41,12 @@ const brandVars = `--color-primary:${appConfig.primaryColor};--color-accent:${ap
     />
   </head>
   <body class="min-h-screen bg-slate-950 text-slate-100">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:font-semibold focus:text-slate-900"
+    >
+      Skip to main content
+    </a>
     <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50">
       <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
         <a href="/" class="flex items-center gap-2.5">
@@ -48,10 +54,10 @@ const brandVars = `--color-primary:${appConfig.primaryColor};--color-accent:${ap
           <span
             class={`text-xs font-medium px-2 py-0.5 rounded-full border ${statusStyle(appConfig.status)}`}
           >
-            {appConfig.status}
+            <span class="sr-only">Status: </span>{appConfig.status}
           </span>
         </a>
-        <nav class="flex items-center gap-0.5">
+        <nav class="flex items-center gap-0.5" aria-label="Primary">
           {
             navLinks.map(({ href, label }) => (
               <a
@@ -70,7 +76,7 @@ const brandVars = `--color-primary:${appConfig.primaryColor};--color-accent:${ap
       </div>
     </header>
 
-    <main>
+    <main id="main-content">
       <slot />
     </main>
 

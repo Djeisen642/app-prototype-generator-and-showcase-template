@@ -240,6 +240,37 @@ npm run deploy:firebase   # Build + deploy to Firebase Hosting
 
 ---
 
+## Accessibility
+
+This site must be usable with a keyboard and a screen reader. `npm run lint`
+runs `eslint-plugin-astro`'s **strict `jsx-a11y` rules on every `.astro` file**,
+and CI blocks merges on it — but the linter only catches a subset, so follow
+these rules by hand too:
+
+**Do:**
+
+- Give every `<img>` an `alt`: a meaningful description, or `alt=""` when it is
+  decorative (e.g. a preview whose title is already shown as adjacent text).
+- Mark decorative icons and emoji (`✓`, `▶`, 🖼️, feature icons, etc.) with
+  `aria-hidden="true"` so screen readers don't announce them as noise.
+- Give every interactive control an accessible name. Icon-only buttons (e.g.
+  gallery thumbnails) need an `aria-label`.
+- Preserve the landmarks and the "Skip to main content" link in
+  `Layout.astro` — `<header>`, `<nav aria-label>`, `<main id="main-content">`,
+  `<footer>`. Skip links and landmarks are how screen-reader users navigate.
+- Keep exactly one `<h1>` per page and don't skip heading levels.
+- Keep the `:focus-visible` outline in `src/styles/global.css` — it is the
+  keyboard focus indicator.
+- Hold HTML mockups in `public/prototypes/{id}/` to the same bar: alt text,
+  labelled controls, semantic headings.
+
+**Do not:**
+
+- Remove focus outlines, or convey meaning by color alone.
+- Ship an icon-only control with no text and no `aria-label`.
+
+---
+
 ## Maintaining This File
 
 **Agents must keep `AGENTS.md` and `README.md` accurate.** When you make a structural change, update both files before finishing the task. Do not leave them stale.
