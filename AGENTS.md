@@ -185,7 +185,20 @@ Prompts:
 - Is any interactive element hidden behind a non-obvious disclosure widget (`<details>`) with no visual affordance?
 - Can a first-time visitor understand the page's purpose in under 5 seconds without reading the body copy?
 
-### 4. Marcy Sutton — Accessibility
+### 4. Paul Graham — Idea Quality
+
+> "Is this worth building at all?"
+
+Prompts:
+
+- Who, specifically, wants this — not a persona, a real type of person? If the answer is "anyone who…" it's too broad; narrow it until it hurts.
+- Is the problem description something the target user would say out loud, or is it something a founder invented? Rewrite it in the user's words.
+- What does the user do today instead? If the answer is "nothing" or "they just deal with it," that's a weak signal — strong problems have bad workarounds people are already paying for.
+- Is the core value prop a vitamin or a painkiller? If it's a vitamin, does the copy make it feel urgent anyway?
+- Does the feature list solve the core problem, or does it showcase technology? Cut any feature that doesn't directly address the stated problem.
+- What's the simplest version of this that a solo founder could ship in a week? Is the prototype scoped closer to that, or to the version a committee would build?
+
+### 5. Marcy Sutton — Accessibility
 
 > "Where are the missing aria-labels, broken focus states, or semantic HTML errors?"
 
