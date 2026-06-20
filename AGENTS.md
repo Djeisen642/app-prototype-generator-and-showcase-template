@@ -310,6 +310,48 @@ npm run deploy:firebase   # Build + deploy to Firebase Hosting
 
 ---
 
+## Repository Settings
+
+These are one-time setup steps for a healthy repo. Do them after the first push.
+
+### GitHub Settings (UI)
+
+| Setting                              | Where                               | Value                              |
+| ------------------------------------ | ----------------------------------- | ---------------------------------- |
+| Dependabot security alerts           | Settings → Security → Code security | Enabled                            |
+| Dependabot automatic security PRs    | Settings → Security → Code security | Enabled                            |
+| Require status checks before merging | Settings → Branches → main rule     | `verify` (the CI job)              |
+| Require branches to be up to date    | Settings → Branches → main rule     | Enabled                            |
+| Delete head branches automatically   | Settings → General                  | Enabled                            |
+| Allow squash merging only            | Settings → General → Merge button   | Squash only (keeps history linear) |
+
+### Dependency Updates — Renovate
+
+`renovate.json` is already in the repo. To activate it:
+
+1. Install the [Renovate GitHub App](https://github.com/apps/renovate) on the repository.
+2. Renovate will open a one-time "Configure Renovate" onboarding PR — merge it.
+3. From then on, Renovate runs every Monday before 5 am and opens PRs for outdated deps.
+
+What the config does:
+
+- **Patch bumps to devDependencies** — auto-merged after CI goes green (safe; these are build-time only)
+- **Everything else** (minor/major, or anything touching `astro`) — opens a PR for human review
+- **Dependency Dashboard** — a pinned issue lists all pending and scheduled updates at a glance
+- **Semantic commits** — update commits follow Conventional Commits format
+
+To tighten or loosen the policy, edit `renovate.json`. Common adjustments:
+
+```jsonc
+// Also auto-merge minor devDep bumps:
+{ "matchDepTypes": ["devDependencies"], "matchUpdateTypes": ["minor", "patch"], "automerge": true }
+
+// Group all non-major updates into one PR per week:
+"extends": ["config:base", ":dependencyDashboard", ":semanticCommits", "group:allNonMajor"]
+```
+
+---
+
 ## Accessibility
 
 This site must be usable with a keyboard and a screen reader. `npm run lint`
