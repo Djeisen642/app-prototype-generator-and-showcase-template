@@ -52,7 +52,6 @@ This document lists every template-specific element to update when setting up th
 - [ ] **`AGENTS.md`** — Can be kept or updated with app-specific agent instructions
 - [ ] **`CLAUDE.md`** — Can be kept or updated
 - [ ] **`LICENSE`** — Update copyright line with your name
-- [ ] **`index.html`** — The `<title>` is set dynamically from `appConfig.name`, no change needed
 - [ ] **`public/favicon.svg`** — Replace with your app's real favicon
 
 ---
