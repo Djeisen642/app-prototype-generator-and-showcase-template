@@ -1,6 +1,6 @@
 # Generating Prototypes with an AI Agent
 
-Prototypes in this template are created by AI agents — Claude Code, Cursor, Copilot Workspace, or similar tools — not by direct API calls from the app.
+Prototypes in this template are created by AI agents — Claude Code, Cursor, Copilot Workspace, or similar tools.
 
 ---
 

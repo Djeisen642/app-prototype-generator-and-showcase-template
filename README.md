@@ -2,8 +2,6 @@
 
 A template for founders and builders who want to **show an app idea** before writing production code. Describe a concept to an AI agent; the agent generates realistic mockup images and a product brief; the showcase site presents it to investors, users, or teammates.
 
-No API keys required — prototypes are created by AI agents (Claude Code, Cursor, Codex, etc.), not by the app itself.
-
 Built with **Astro + Tailwind** — every page is prerendered to static HTML (ideal for SEO and AI discovery), ships virtually no JavaScript, and is keyboard- and screen-reader-accessible (enforced by strict `jsx-a11y` linting in CI).
 
 ---

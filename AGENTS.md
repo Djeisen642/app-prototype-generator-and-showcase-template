@@ -303,7 +303,6 @@ npm run deploy:firebase   # Build + deploy to Firebase Hosting
 
 **Do not:**
 
-- Commit `.env.local` — it contains any local secrets
 - Use `any` in TypeScript or leave unused variables
 - Add logic to `public/prototypes/index.json` — it is data only
 - Modify `docs/` or `AGENTS.md` unless the structure actually changed
