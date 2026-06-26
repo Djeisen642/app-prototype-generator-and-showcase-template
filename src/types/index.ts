@@ -8,6 +8,14 @@ export interface Feature {
   description: string;
 }
 
+// A sample of the product's voice — how it talks to the user at a key moment.
+// Lives on the detail page so the tone is part of the brief, not buried in a mockup.
+export interface VoiceSample {
+  when: string; // the moment, e.g. "After a miss"
+  line: string; // what the app actually says
+  note?: string; // why it's written that way
+}
+
 export interface Prototype {
   id: string;
   title: string;
@@ -16,6 +24,7 @@ export interface Prototype {
   problem?: string;
   targetUsers?: string;
   features?: Feature[];
+  voice?: VoiceSample[];
   competitive?: {
     competitors?: string[];
     advantages?: string[];

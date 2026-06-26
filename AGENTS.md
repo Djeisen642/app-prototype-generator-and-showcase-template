@@ -147,7 +147,16 @@ When asked to add a new app concept prototype:
 
 ## Adversarial Review — Prototype Quality Gate
 
-Before marking a prototype complete, run this four-panel review. Be brutal and specific; surface the worst offense in each dimension and fix it before shipping.
+Before marking a prototype complete, run this review. Be brutal and specific; surface the worst offense in each dimension and fix it before shipping.
+
+### 0. Render Check — Look at the Live Page First
+
+Automated checks won't catch a visual glitch. Open `/showcase/{id}` in the browser and actually _look_ at the rendered gallery and interactive mockup — not just the raw image files — before running the persona panels below. For **mobile prototypes** especially:
+
+- **Readable text.** Is every label, body line, and caption legible at the size it actually renders on the page? Tiny or cramped type reads as unfinished. Scale the font up until it's comfortable at the _displayed_ size, not just at full image resolution.
+- **No device-frame artifacts.** Thumbnails and image labels are cropped (`object-cover object-top`). A phone bezel, notch, status bar, or home-bar bleeding into that crop looks like a rendering bug. Either crop the phone chrome out of the screenshot, or keep the frame consistent across _every_ screen so it never half-appears.
+- **Consistent framing.** Every screen in a gallery must share the same aspect ratio, padding, and decision about whether it includes a phone frame. Mismatched framing is the tell that screens were generated piecemeal.
+- Do not call a prototype "ready" until you've viewed it rendered — confirm text is legible and no screen shows a stray device-frame artifact.
 
 ### 1. Linus Torvalds — Code Quality
 
