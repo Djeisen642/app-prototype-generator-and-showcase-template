@@ -197,6 +197,10 @@ ${competitors.length ? `Beats:    ${competitors.join(", ")}` : ""}
   console.log(`  public/prototypes/${id}/mockup.html`);
   console.log(`  Then set "htmlFile": "/prototypes/${id}/mockup.html" in index.json.\n`);
   console.log(`View at: http://localhost:4321/showcase/${id}`);
+  console.log(`\nBefore calling it done, open that page and LOOK:`);
+  console.log(`  - Text legible at the size it renders (no tiny/cramped fonts)`);
+  console.log(`  - No phone bezel/notch/home-bar bleeding into thumbnails or labels`);
+  console.log(`  - Every screen shares the same framing`);
   console.log(divider + "\n");
 }
 

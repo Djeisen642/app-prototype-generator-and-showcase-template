@@ -38,6 +38,18 @@
           "AI-suggested task breakdowns from plain-language descriptions"
         ]
       },
+      "voice": [
+        {
+          "when": "Welcoming a new workspace",
+          "line": "You're in. Add your first task — I'll handle the busywork from here.",
+          "note": "Warm and capable, not bubbly. Sets the expectation that the tool does the chores."
+        },
+        {
+          "when": "A deadline is slipping",
+          "line": "Heads up: \"Ship onboarding flow\" is due tomorrow and still in progress. Want me to nudge the assignee?",
+          "note": "States the fact, then offers one concrete action — never nags or guilt-trips."
+        }
+      ],
       "images": [],
       "htmlFile": "/prototypes/taskflow-sample/mockup.html",
       "tags": ["productivity", "project-management", "saas"],
